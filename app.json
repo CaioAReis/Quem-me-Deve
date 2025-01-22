@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "rating",
-    "slug": "rating",
+    "name": "app-base",
+    "slug": "app-base",
     "version": "1.0.0",
 
-    "scheme": "rating",
+    "scheme": "app-base",
     "web": {
       "bundler": "metro",
       "output": "static",
