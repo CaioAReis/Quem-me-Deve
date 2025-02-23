@@ -3,19 +3,15 @@ import { Text as TextRN } from "react-native";
 import { TextProps } from "@/@types";
 
 export const Text = ({ children, variant, className }: TextProps) => {
-  return (
-    <TextRN className={`${styles.default} ${styles[variant ?? "default"]} ${className}`}>
-      {children}
-    </TextRN>
-  );
+  return <TextRN className={`${styles[variant ?? "default"]} ${className}`}>{children}</TextRN>;
 };
 
 const styles = {
-  default: "text-lg",
-  H1: "font-bold text-4xl",
-  H2: "font-bold text-3xl",
-  H3: "font-bold text-2xl",
-  H4: "font-bold text-xl",
-  H5: "font-bold text-lg",
-  H6: "font-bold text-base",
+  default: "text-lg font-poppinsRegular",
+  H1: "text-4xl font-poppinsMedium",
+  H2: "text-3xl font-poppinsMedium",
+  H3: "text-2xl font-poppinsMedium",
+  H4: "text-xl font-poppinsMedium",
+  H5: "text-lg font-poppinsMedium",
+  H6: "text-base font-poppinsMedium",
 };
