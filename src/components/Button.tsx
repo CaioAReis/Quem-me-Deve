@@ -17,7 +17,9 @@ export function Button({ children, className, ...rest }: Props) {
       {...rest}
     >
       <LinearGradient end={{ x: 0.6, y: 2 }} colors={["#7740FE", "#2CDC5F"]}>
-        <Text className="m-3 text-center font-poppinsBold color-white">{children}</Text>
+        <Text variant="H4" className="m-3 text-center color-white">
+          {children}
+        </Text>
       </LinearGradient>
     </TouchableOpacity>
   );
