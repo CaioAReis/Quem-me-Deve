@@ -3,7 +3,11 @@ import { Text as TextRN } from "react-native";
 import { TextProps } from "@/@types";
 
 export const Text = ({ children, variant, className }: TextProps) => {
-  return <TextRN className={`${styles[variant ?? "default"]} ${className}`}>{children}</TextRN>;
+  return (
+    <TextRN className={`text-gray-900 ${styles[variant ?? "default"]} ${className}`}>
+      {children}
+    </TextRN>
+  );
 };
 
 const styles = {
