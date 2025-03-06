@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { Image } from "react-native";
 
 import { Button } from "@/components";
@@ -10,7 +10,7 @@ export default function Welcome() {
     <>
       <Stack.Screen options={{ title: "Welcome" }} />
 
-      <Container>
+      <Container className="bg-gray-50">
         <Image className="m-8 size-12" source={require("@/assets/images/logo.png")} />
 
         <Center className="my-6 h-80 w-10/12 self-end overflow-hidden rounded-l-[80]">
@@ -41,7 +41,9 @@ export default function Welcome() {
             Evite esquecimentos e dores de cabeça mantenha suas finanças no controle.
           </Text>
 
-          <Button className="mt-8 w-full">Continuar</Button>
+          <Link href="/startSession" asChild>
+            <Button className="mt-8 w-full">Continuar</Button>
+          </Link>
         </Center>
       </Container>
     </>

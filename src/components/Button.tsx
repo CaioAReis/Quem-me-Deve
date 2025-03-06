@@ -19,7 +19,7 @@ export function Button({ children, className, variant, ...rest }: Props) {
     >
       <LinearGradient style={{ padding: 2 }} end={{ x: 0.6, y: 2 }} colors={["#7740FE", "#2CDC5F"]}>
         <Center className={`${styles[variant ?? "solid"]} rounded-full`}>
-          <Text variant="H4" className={`${colorStyles[variant ?? "solid"]} m-3 text-center`}>
+          <Text variant="H5" className={`${colorStyles[variant ?? "solid"]} m-2 text-center`}>
             {children}
           </Text>
         </Center>
