@@ -1,5 +1,6 @@
 import { CircleX } from "lucide-react-native";
 import { TextInput, TextInputProps } from "react-native";
+import { twMerge } from "tailwind-merge";
 
 import { Box, HStack, Text } from "./layout";
 
@@ -19,7 +20,10 @@ export function Input({ label, isDisabled, isInvalid, ...rest }: Props) {
       <TextInput
         cursorColor="#7740FE"
         editable={!isDisabled}
-        className={`rounded-xl border bg-white px-5 py-4 text-gray-800 ${isInvalid ? "border-red-500" : "border-gray-200"} placeholder:color-gray-400`}
+        className={twMerge(
+          "rounded-xl border border-gray-200 bg-white px-5 py-4 text-gray-800",
+          isInvalid && "border-red-500"
+        )}
         {...rest}
       />
 
