@@ -1,10 +1,23 @@
 /** @type {import("tailwindcss").Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./src/**/**/*.{js,jsx,ts,tsx}"],
-
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
+      fontSize: {
+        xs: [10, { lineHeight: 1.5 }],
+        sm: [12, { lineHeight: 1.5 }],
+        base: [14, { lineHeight: 1.5 }],
+        lg: [16, { lineHeight: 1.5 }],
+        xl: [20, { lineHeight: 1.5 }],
+        "2xl": [24, { lineHeight: 1.5 }],
+        "3xl": [30, { lineHeight: 1.5 }],
+        "4xl": [36, { lineHeight: 1.5 }],
+        "5xl": [48, { lineHeight: 1.5 }],
+        "6xl": [64, { lineHeight: 1.5 }],
+        "7xl": [80, { lineHeight: 1.5 }],
+      },
+
       fontFamily: {
         poppinsLight: ["Poppins-light"],
         poppinsRegular: ["Poppins-regular"],
