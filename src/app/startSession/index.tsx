@@ -1,21 +1,42 @@
 import { thumbs } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
 import { Stack } from "expo-router";
+import { useForm, Controller } from "react-hook-form";
 import { Image } from "react-native";
-import { SvgXml } from "react-native-svg";
 
-import { Button, Input } from "@/components";
-import { Center, Container, Text, VStack } from "@/components/layout";
+import { Avatar, Button, Input } from "@/components";
+import { Container, Text, VStack } from "@/components/layout";
+
+type UserData = {
+  name: string;
+  avatar: string;
+};
 
 export default function StartSession() {
+  const {
+    watch,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserData>();
+
   const avatar = createAvatar(thumbs, {
-    seed: "John Doe",
     scale: 80,
+    seed: watch("name"),
     shapeColor: ["FE7740"],
     backgroundRotation: [25],
     backgroundType: ["gradientLinear"],
     backgroundColor: ["7740FE", "2CDC5F"],
   });
+
+  const onSubmit = (data: UserData) => {
+    const userData = {
+      ...data,
+      avatar: avatar.toString(),
+    } as UserData;
+
+    console.log(userData);
+  };
 
   return (
     <>
@@ -33,15 +54,33 @@ export default function StartSession() {
             {"Antes de começar, precisamos\n de algumas informações."}
           </Text>
 
-          <Center className="size-40 overflow-hidden rounded-full">
-            <SvgXml width="100%" height="100%" xml={avatar.toString()} />
-          </Center>
+          <Avatar
+            size="5xl"
+            name="Caio AReis"
+            xml={avatar.toString()}
+          />
 
           <VStack className="w-full">
-            <Input label="Seu nome" placeholder="Seu nome" />
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: "Preencha com seu nome" }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Input
+                  value={value}
+                  onBlur={onBlur}
+                  label="Seu Nome"
+                  onChangeText={onChange}
+                  placeholder="Nome completo"
+                  isInvalid={errors.name?.message}
+                />
+              )}
+            />
           </VStack>
 
-          <Button className="mt-8 w-full">Continue</Button>
+          <Button onPress={handleSubmit(onSubmit)} className="mt-8 w-full">
+            Continue
+          </Button>
         </VStack>
       </Container>
     </>
