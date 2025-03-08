@@ -54,11 +54,7 @@ export default function StartSession() {
             {"Antes de começar, precisamos\n de algumas informações."}
           </Text>
 
-          <Avatar
-            size="5xl"
-            name="Caio AReis"
-            xml={avatar.toString()}
-          />
+          <Avatar size="5xl" name="Caio AReis" xml={avatar.toString()} />
 
           <VStack className="w-full">
             <Controller

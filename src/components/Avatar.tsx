@@ -1,8 +1,8 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
+import { twMerge } from "tailwind-merge";
 
 import { Box, Center, Text } from "./layout";
-import { twMerge } from "tailwind-merge";
-import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
   xml?: string;
@@ -29,17 +29,17 @@ export function Avatar({ xml, name, size = "base", className }: Props) {
   const { dim, label } = SIZES[size];
 
   return (
-    <Box className={twMerge("border-2 border-gray-50 rounded-full overflow-hidden p-0", className)}>
+    <Box className={twMerge("overflow-hidden rounded-full border-2 border-gray-50 p-0", className)}>
       <LinearGradient
         end={{ x: 1.1, y: 0.3 }}
         colors={["#7740FE", "#2CDC5F"]}
         style={{ width: dim, height: dim }}
       >
         <Center className="size-full">
-          {xml ? <SvgXml width="100%" height="100%" xml={xml} /> : (
-            <Text className={`text-gray-50 text-${label}`}>
-              {lettersName.toLocaleUpperCase()}
-            </Text>
+          {xml ? (
+            <SvgXml width="100%" height="100%" xml={xml} />
+          ) : (
+            <Text className={`text-gray-50 text-${label}`}>{lettersName.toLocaleUpperCase()}</Text>
           )}
         </Center>
       </LinearGradient>
