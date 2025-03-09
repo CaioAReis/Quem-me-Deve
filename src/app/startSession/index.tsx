@@ -1,11 +1,12 @@
-import { thumbs } from "@dicebear/collection";
-import { createAvatar } from "@dicebear/core";
 import { Stack } from "expo-router";
-import { useForm, Controller } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Image } from "react-native";
+
+import { useStartSessionForm } from "./hooks/useStartSessionForm";
 
 import { Avatar, Button, Input } from "@/components";
 import { Container, Text, VStack } from "@/components/layout";
+import { generateAvatar } from "@/lib";
 
 type UserData = {
   name: string;
@@ -13,30 +14,16 @@ type UserData = {
 };
 
 export default function StartSession() {
-  const {
-    watch,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UserData>();
-
-  const avatar = createAvatar(thumbs, {
-    scale: 80,
-    seed: watch("name"),
-    shapeColor: ["FE7740"],
-    backgroundRotation: [25],
-    backgroundType: ["gradientLinear"],
-    backgroundColor: ["7740FE", "2CDC5F"],
-  });
-
   const onSubmit = (data: UserData) => {
     const userData = {
       ...data,
-      avatar: avatar.toString(),
+      avatar: generateAvatar(data.name),
     } as UserData;
 
     console.log(userData);
   };
+
+  const { control, watch, errors, handleSubmit } = useStartSessionForm();
 
   return (
     <>
@@ -54,7 +41,7 @@ export default function StartSession() {
             {"Antes de começar, precisamos\n de algumas informações."}
           </Text>
 
-          <Avatar size="5xl" name="Caio AReis" xml={avatar.toString()} />
+          <Avatar size="5xl" name="User" xml={watch("avatar")} />
 
           <VStack className="w-full">
             <Controller
