@@ -28,7 +28,7 @@ export function Button({ children, loading = false, className, variant, ...rest 
             />
           ) : (
             <Text variant="H5" className={`${colorStyles[variant ?? "solid"]} m-2 text-center`}>
-              {children} AA
+              {children}
             </Text>
           )}
         </Center>
