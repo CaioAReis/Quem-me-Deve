@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { Controller } from "react-hook-form";
 import { Image } from "react-native";
 
@@ -21,6 +21,8 @@ export default function StartSession() {
     } as UserData;
 
     console.log(userData);
+
+    router.push("/(user)/home");
   };
 
   const { control, watch, errors, handleSubmit } = useStartSessionForm();
