@@ -12,7 +12,7 @@ type Props = {
 };
 
 const SIZES = {
-  xs: { dim: 50, label: "lg" },
+  xs: { dim: 50, label: "xl" },
   sm: { dim: 70, label: "xl" },
   base: { dim: 80, label: "xl" },
   xl: { dim: 100, label: "3xl" },
@@ -39,7 +39,9 @@ export function Avatar({ xml, name, size = "base", className }: Props) {
           {xml ? (
             <SvgXml width="100%" height="100%" xml={xml} />
           ) : (
-            <Text className={`text-gray-50 text-${label}`}>{lettersName.toLocaleUpperCase()}</Text>
+            <Text className={`font-poppinsMedium text-gray-50 text-${label}`}>
+              {lettersName.toLocaleUpperCase()}
+            </Text>
           )}
         </Center>
       </LinearGradient>
