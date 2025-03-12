@@ -4,7 +4,7 @@ import { Eye, Moon } from "lucide-react-native";
 import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 
-import { ListEmpty, LoanCard, TabButton } from "./components";
+import { Divider, ListEmpty, LoanCard, TabButton } from "./components";
 
 import { Avatar } from "@/components";
 import { Center, Container, HStack, Text, VStack } from "@/components/layout";
@@ -24,6 +24,8 @@ export default function Home() {
         <FlatList
           data={["", "", "", ""]}
           renderItem={() => <LoanCard />}
+          ListEmptyComponent={<ListEmpty />}
+          ItemSeparatorComponent={() => <Divider />}
           ListHeaderComponent={
             <>
               <LinearGradient end={{ x: 0.8, y: 1 }} colors={["#7740FE", "#2CDC5F"]}>
@@ -55,7 +57,7 @@ export default function Home() {
                 </VStack>
               </LinearGradient>
 
-              <VStack className="mt-10 px-6">
+              <VStack className="mb-4 mt-10 px-6">
                 <Text className="font-poppinsMedium text-gray-800">Empréstimos Realizados:</Text>
 
                 <Center className="my-5">
@@ -78,7 +80,6 @@ export default function Home() {
               </VStack>
             </>
           }
-          ListEmptyComponent={<ListEmpty />}
         />
       </Container>
     </>
