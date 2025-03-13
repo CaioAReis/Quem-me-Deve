@@ -1,18 +1,25 @@
 import { Avatar } from "@/components";
 import { Box, HStack, Text, VStack } from "@/components/layout";
 
-export function LoanCard() {
+type Props = {
+  since: Date;
+  debit: number;
+  userName: string;
+  loanBalance: number;
+};
+
+export function LoanCard({ userName, since, debit, loanBalance }: Props) {
   return (
     <HStack className="items-center justify-between px-6 py-1">
       <HStack className="flex-1 items-center gap-3">
-        <Avatar name="Caio AReis" size="xs" />
+        <Avatar name={userName} size="xs" />
 
-        <VStack className="gap-0">
-          <Text variant="H5" className="text-gray-800">
-            Caio AReis
+        <VStack className="flex-1 gap-0">
+          <Text variant="H6" className="text-gray-800" numberOfLines={1}>
+            {userName}
           </Text>
 
-          <Text className="text-xs text-gray-600">Desde 20/02/2025</Text>
+          <Text className="text-xs text-gray-600">Desde {since.toLocaleDateString("pt-BR")}</Text>
         </VStack>
       </HStack>
 
@@ -22,7 +29,7 @@ export function LoanCard() {
         </Box>
 
         <Text variant="H6" className="text-gray-800">
-          R$ 300,00
+          {(debit / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
         </Text>
       </HStack>
     </HStack>
