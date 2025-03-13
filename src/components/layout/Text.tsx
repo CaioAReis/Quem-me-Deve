@@ -1,10 +1,14 @@
-import { Text as TextRN } from "react-native";
+import { Text as TextRN, TextProps as TextPropsRN } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 import { TextProps } from "@/@types";
 
-export const Text = ({ children, variant, className }: TextProps) => {
-  return <TextRN className={twMerge(styles[variant ?? "default"], className)}>{children}</TextRN>;
+export const Text = ({ children, variant, className, ...rest }: TextProps & TextPropsRN) => {
+  return (
+    <TextRN className={twMerge(styles[variant ?? "default"], className)} {...rest}>
+      {children}
+    </TextRN>
+  );
 };
 
 const styles = {
