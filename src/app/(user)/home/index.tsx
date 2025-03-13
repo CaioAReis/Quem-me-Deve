@@ -4,7 +4,7 @@ import { Eye, Moon } from "lucide-react-native";
 import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 
-import { Divider, ListEmpty, LoanCard, TabButton } from "./components";
+import { Divider, Fab, ListEmpty, LoanCard, TabButton } from "./_components";
 
 import { Avatar } from "@/components";
 import { Center, Container, HStack, Text, VStack } from "@/components/layout";
@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <Stack.Screen options={{ title: "Home" }} />
 
-      <Container className="bg-gray-50">
+      <Container className="relative bg-gray-50">
         <FlatList
           data={["", "", "", ""]}
           renderItem={() => <LoanCard />}
@@ -81,6 +81,8 @@ export default function Home() {
             </>
           }
         />
+
+        <Fab />
       </Container>
     </>
   );
