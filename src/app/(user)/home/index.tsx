@@ -18,7 +18,14 @@ export default function Home() {
       <Container className="relative bg-gray-50">
         <FlatList
           data={loanList}
-          renderItem={() => <LoanCard />}
+          renderItem={({ item }) => (
+            <LoanCard
+              debit={item.totalDebt}
+              since={item.createdAt}
+              userName={item.user.name}
+              loanBalance={loanBalance}
+            />
+          )}
           ListEmptyComponent={<ListEmpty />}
           ItemSeparatorComponent={() => <Divider />}
           ListHeaderComponent={
