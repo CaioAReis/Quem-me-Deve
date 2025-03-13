@@ -2,7 +2,7 @@ import { router, Stack } from "expo-router";
 import { Controller } from "react-hook-form";
 import { Image } from "react-native";
 
-import { useStartSessionForm } from "./hooks/useStartSessionForm";
+import { useStartSessionForm } from "./_hooks/useStartSessionForm";
 
 import { Avatar, Button, Input } from "@/components";
 import { Container, Text, VStack } from "@/components/layout";
