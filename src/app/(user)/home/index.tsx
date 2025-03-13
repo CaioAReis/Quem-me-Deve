@@ -1,20 +1,15 @@
-import { LinearGradient } from "expo-linear-gradient";
 import { Stack } from "expo-router";
-import { Eye, Moon } from "lucide-react-native";
-import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 
-import { Divider, Fab, ListEmpty, LoanCard, TabButton } from "./_components";
+import { Divider, Fab, HomeHeader, HomeTabs, ListEmpty, LoanCard } from "./_components";
+import { useHome } from "./_hooks/useHome";
+import { useTabs } from "./_hooks/useTabs";
 
-import { Avatar } from "@/components";
-import { Center, Container, HStack, Text, VStack } from "@/components/layout";
-import { generateAvatar } from "@/lib";
+import { Container } from "@/components/layout";
 
 export default function Home() {
-  const [currentTab, setCurrentTab] = useState<"pending" | "paid">("pending");
-
-  const handleChangeToPaid = useCallback(() => setCurrentTab("paid"), []);
-  const handleChangeToPending = useCallback(() => setCurrentTab("pending"), []);
+  const { currentTab, handleChangeToPaid, handleChangeToPending } = useTabs();
+  const { loanList, loanBalance } = useHome({ currentTab });
 
   return (
     <>
@@ -22,62 +17,20 @@ export default function Home() {
 
       <Container className="relative bg-gray-50">
         <FlatList
-          data={["", "", "", ""]}
+          data={loanList}
           renderItem={() => <LoanCard />}
           ListEmptyComponent={<ListEmpty />}
           ItemSeparatorComponent={() => <Divider />}
           ListHeaderComponent={
             <>
-              <LinearGradient end={{ x: 0.8, y: 1 }} colors={["#7740FE", "#2CDC5F"]}>
-                <VStack className="p-6">
-                  <HStack className="items-center">
-                    <HStack className="flex-1 items-center">
-                      <Avatar size="xs" name="Caio AReis" xml={generateAvatar("")} />
+              <HomeHeader loanBalance={loanBalance} />
 
-                      <VStack className="gap-0">
-                        <Text className="text-sm text-gray-200">Olá,</Text>
-                        <Text variant="H5" className="text-white">
-                          Caio AReis
-                        </Text>
-                      </VStack>
-                    </HStack>
-
-                    <HStack>
-                      <Eye color="white" />
-                      <Moon color="white" />
-                    </HStack>
-                  </HStack>
-
-                  <Center className="my-6 gap-2">
-                    <Text className="text-base text-white">Balanço total</Text>
-                    <Text variant="H1" className="font-poppinsBold text-white">
-                      R$ 2.430,00
-                    </Text>
-                  </Center>
-                </VStack>
-              </LinearGradient>
-
-              <VStack className="mb-4 mt-10 px-6">
-                <Text className="font-poppinsMedium text-gray-800">Empréstimos Realizados:</Text>
-
-                <Center className="my-5">
-                  <HStack className="w-3/4 gap-8">
-                    <TabButton
-                      icon="Clock"
-                      label="Pendente"
-                      onPress={handleChangeToPending}
-                      selected={currentTab === "pending"}
-                    />
-
-                    <TabButton
-                      label="Pagos"
-                      icon="CircleCheckBig"
-                      onPress={handleChangeToPaid}
-                      selected={currentTab === "paid"}
-                    />
-                  </HStack>
-                </Center>
-              </VStack>
+              <HomeTabs
+                currentTab={currentTab}
+                title="Empréstimos Realizados:"
+                onChangeToPaid={handleChangeToPaid}
+                onChangeToPending={handleChangeToPending}
+              />
             </>
           }
         />
