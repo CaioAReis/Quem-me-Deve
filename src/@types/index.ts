@@ -16,7 +16,7 @@ export type User = {
 };
 
 type historyItem = {
-  value: number;
+  value: number; // IN CENTS
   createdAt: Date;
   type: "payment" | "loan";
 };

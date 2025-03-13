@@ -30,7 +30,7 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
         <Center className="my-6 gap-2">
           <Text className="text-base text-white">Balanço total</Text>
           <Text variant="H1" className="font-poppinsBold text-white">
-            R$ {loanBalance}
+            {Number(loanBalance).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
           </Text>
         </Center>
       </VStack>
