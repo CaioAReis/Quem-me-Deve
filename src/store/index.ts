@@ -1,15 +1,11 @@
 import { create } from "zustand";
 
-export interface BearState {
-  bears: number;
-  increasePopulation: () => void;
-  removeAllBears: () => void;
-  updateBears: (newBears: number) => void;
-}
+import { DefaultState } from "@/@types";
 
-export const useStore = create<BearState>((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
-  updateBears: (newBears) => set({ bears: newBears }),
+export const useAppStore = create<DefaultState>((set) => ({
+  isDark: false,
+  changeTheme: () => set((state) => ({ isDark: !state.isDark })),
+
+  hiddenValues: false,
+  changeVisibilityValues: () => set((state) => ({ hiddenValues: !state.hiddenValues })),
 }));

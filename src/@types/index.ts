@@ -1,3 +1,11 @@
+export interface DefaultState {
+  isDark: boolean;
+  changeTheme: () => void;
+
+  hiddenValues: boolean;
+  changeVisibilityValues: () => void;
+}
+
 export type LayoutProps = {
   className?: string;
   children?: React.ReactNode;
