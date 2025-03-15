@@ -3,6 +3,7 @@ import { Eye } from "lucide-react-native";
 
 import { Avatar } from "@/components";
 import { Center, HStack, Text, VStack } from "@/components/layout";
+import { CurrencyVisibility } from "@/features/currencyVisibility";
 import { Theme } from "@/features/theme";
 import { generateAvatar } from "@/lib";
 import { convertToCurrency } from "@/utils/functions";
@@ -25,6 +26,7 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
 
           <HStack>
             <Eye color="white" />
+            <CurrencyVisibility />
 
             <Theme />
           </HStack>
