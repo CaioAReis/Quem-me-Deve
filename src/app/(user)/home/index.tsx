@@ -5,7 +5,7 @@ import { Divider, Fab, HomeHeader, HomeTabs, ListEmpty, LoanCard } from "./_comp
 import { useHome } from "./_hooks/useHome";
 import { useTabs } from "./_hooks/useTabs";
 
-import { Container } from "@/components/layout";
+import { Box, Container } from "@/components/layout";
 
 export default function Home() {
   const { currentTab, handleChangeToPaid, handleChangeToPending } = useTabs();
@@ -26,6 +26,7 @@ export default function Home() {
               loanBalance={loanBalance}
             />
           )}
+          ListFooterComponent={<Box className="h-28" />}
           ListEmptyComponent={<ListEmpty />}
           ItemSeparatorComponent={() => <Divider />}
           ListHeaderComponent={
