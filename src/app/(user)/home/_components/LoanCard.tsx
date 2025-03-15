@@ -2,6 +2,7 @@ import { useLoanCard } from "../_hooks/useLoanCard";
 
 import { Avatar } from "@/components";
 import { Box, HStack, Text, VStack } from "@/components/layout";
+import { convertToCurrency } from "@/utils/functions";
 
 type Props = {
   since: Date;
@@ -33,7 +34,7 @@ export function LoanCard({ userName, since, debit, loanBalance }: Props) {
         </Box>
 
         <Text variant="H6" className="text-gray-800">
-          {(debit / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+          {convertToCurrency(debit / 100)}
         </Text>
       </HStack>
     </HStack>

@@ -4,6 +4,7 @@ import { Eye, Moon } from "lucide-react-native";
 import { Avatar } from "@/components";
 import { Center, HStack, Text, VStack } from "@/components/layout";
 import { generateAvatar } from "@/lib";
+import { convertToCurrency } from "@/utils/functions";
 
 export function HomeHeader({ loanBalance }: { loanBalance: number }) {
   return (
@@ -30,7 +31,7 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
         <Center className="my-6 gap-2">
           <Text className="text-base text-white">Balanço total</Text>
           <Text variant="H1" className="font-poppinsBold text-white">
-            {Number(loanBalance).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            {convertToCurrency(loanBalance)}
           </Text>
         </Center>
       </VStack>
