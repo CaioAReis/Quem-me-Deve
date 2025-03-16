@@ -2,6 +2,7 @@ import { useLoanCard } from "../_hooks/useLoanCard";
 
 import { Avatar } from "@/components";
 import { Box, HStack, Text, VStack } from "@/components/layout";
+import { useAppStore } from "@/store";
 import { convertToCurrency } from "@/utils/functions";
 
 type Props = {
@@ -13,6 +14,7 @@ type Props = {
 
 export function LoanCard({ userName, since, debit, loanBalance }: Props) {
   const { percent } = useLoanCard({ debit, loanBalance });
+  const hiddenValues = useAppStore((state) => state.hiddenValues);
 
   return (
     <HStack className="items-center justify-between px-6 py-1">
@@ -28,15 +30,19 @@ export function LoanCard({ userName, since, debit, loanBalance }: Props) {
         </VStack>
       </HStack>
 
-      <HStack className="items-center gap-2">
-        <Box className="rounded-full bg-orange-400 px-2 py-1">
-          <Text className="font-poppinsMedium text-xs text-white">{percent}%</Text>
-        </Box>
+      {hiddenValues ? (
+        <Box className="h-8 w-28 rounded-lg bg-gray-200" />
+      ) : (
+        <HStack className="items-center gap-2">
+          <Box className="rounded-full bg-orange-400 px-2 py-1">
+            <Text className="font-poppinsMedium text-xs text-white">{percent}%</Text>
+          </Box>
 
-        <Text variant="H6" className="text-gray-800">
-          {convertToCurrency(debit / 100)}
-        </Text>
-      </HStack>
+          <Text variant="H6" className="text-gray-800">
+            {convertToCurrency(debit / 100)}
+          </Text>
+        </HStack>
+      )}
     </HStack>
   );
 }

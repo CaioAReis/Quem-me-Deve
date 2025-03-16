@@ -9,7 +9,7 @@ export function CurrencyVisibility() {
 
   return (
     <TouchableOpacity onPress={changeVisibilityValues}>
-      {hiddenValues ? <EyeOff color="white" /> : <Eye color="white" />}
+      {hiddenValues ? <Eye color="white" /> : <EyeOff color="white" />}
     </TouchableOpacity>
   );
 }
