@@ -10,7 +10,7 @@ export default function Welcome() {
     <>
       <Stack.Screen options={{ title: "Welcome" }} />
 
-      <Container className="bg-gray-50">
+      <Container>
         <Image className="m-8 size-12" source={require("@/assets/images/logo.png")} />
 
         <Center className="my-6 h-80 w-10/12 self-end overflow-hidden rounded-l-[80]">

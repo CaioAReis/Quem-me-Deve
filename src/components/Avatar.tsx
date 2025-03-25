@@ -29,7 +29,12 @@ export function Avatar({ xml, name, size = "base", className }: Props) {
   const { dim, label } = SIZES[size];
 
   return (
-    <Box className={twMerge("overflow-hidden rounded-full border-2 border-gray-50 p-0", className)}>
+    <Box
+      className={twMerge(
+        "overflow-hidden rounded-full border-2 border-gray-50 p-0 dark:border-gray-900",
+        className
+      )}
+    >
       <LinearGradient
         end={{ x: 1.1, y: 0.3 }}
         colors={["#7740FE", "#2CDC5F"]}

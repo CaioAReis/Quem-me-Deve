@@ -39,10 +39,10 @@ export function Button({ children, loading = false, className, variant, ...rest 
 
 const styles = {
   solid: "bg-transparent",
-  outline: "bg-gray-50",
+  outline: "bg-gray-50 dark:bg-gray-900",
 };
 
 const colorStyles = {
-  solid: "color-white",
-  outline: "color-primary-500",
+  solid: "color-white dark:text-gray-90",
+  outline: "color-primary-500 dark:color-primary-300",
 };

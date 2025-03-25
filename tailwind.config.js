@@ -3,6 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./src/**/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
+    darkMode: "class",
     extend: {
       fontSize: {
         xs: [10, { lineHeight: 1.5 }],
@@ -67,5 +68,17 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // Defina valores padrão para as variáveis CSS
+    ({ addBase }) => {
+      addBase({
+        ":root": {
+          "--color-primary": "0 122 255", // Azul padrão
+        },
+        ".dark": {
+          "--color-primary": "10 132 255", // Azul escuro
+        },
+      });
+    },
+  ],
 };

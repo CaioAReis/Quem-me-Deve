@@ -1,14 +1,13 @@
 import { Moon, Sun } from "lucide-react-native";
+import { colorScheme, useColorScheme } from "nativewind";
 import { TouchableOpacity } from "react-native";
 
-import { useAppStore } from "@/store";
-
 export function Theme() {
-  const isDark = useAppStore((state) => state.isDark);
-  const changeTheme = useAppStore((state) => state.changeTheme);
+  const { toggleColorScheme } = useColorScheme();
+  const isDark = colorScheme.get() === "dark";
 
   return (
-    <TouchableOpacity onPress={changeTheme}>
+    <TouchableOpacity onPress={toggleColorScheme}>
       {isDark ? <Sun color="white" /> : <Moon color="white" />}
     </TouchableOpacity>
   );

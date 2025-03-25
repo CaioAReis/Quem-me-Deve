@@ -5,14 +5,18 @@ import { TextProps } from "@/@types";
 
 export const Text = ({ children, variant, className, ...rest }: TextProps & TextPropsRN) => {
   return (
-    <TextRN className={twMerge(styles[variant ?? "default"], className)} {...rest}>
+    <TextRN
+      className={twMerge(`${styles.color} ${styles[variant ?? "default"]}`, className)}
+      {...rest}
+    >
       {children}
     </TextRN>
   );
 };
 
 const styles = {
-  default: "font-poppinsRegular text-lg text-gray-900",
+  color: "text-gray-900 dark:text-gray-100",
+  default: "font-poppinsRegular text-lg",
   H1: "text-4xl font-poppinsMedium",
   H2: "text-3xl  font-poppinsMedium",
   H3: "text-2xl font-poppinsMedium",
