@@ -12,7 +12,7 @@ type Props = {
 
 export function Input({ label, isDisabled, isInvalid, ...rest }: Props) {
   return (
-    <Box className="w-full gap-1">
+    <Box className="w-full gap-2">
       <Text variant="H6" className={twMerge(isInvalid && styles.labelInvalid)}>
         {label}
       </Text>
