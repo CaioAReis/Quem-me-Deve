@@ -1,18 +1,17 @@
-import { Stack, useNavigation } from "expo-router";
+import { Stack } from "expo-router";
 import { ArrowLeftCircle } from "lucide-react-native";
-import { useColorScheme } from "nativewind";
+import { Controller } from "react-hook-form";
 import { Image, ScrollView, TouchableOpacity } from "react-native";
+
+import { useNewLoan } from "./_hooks/useNewLoan";
 
 import { Button, Input } from "@/components";
 import { Box, Center, Container, HStack, Text, VStack } from "@/components/layout";
+import { convertToCurrency, dateMask, phoneMask } from "@/utils/functions";
+import { RegExValidate } from "@/utils/regex";
 
 export default function NewLoan() {
-  const navigation = useNavigation();
-  const { colorScheme } = useColorScheme();
-
-  const color = colorScheme === "dark" ? "#e9e9ea" : "#3e3e46";
-
-  const handleBack = () => navigation.goBack();
+  const { control, handleSubmit, errors, onSubmit, color, handleBack } = useNewLoan();
 
   return (
     <>
@@ -30,10 +29,90 @@ export default function NewLoan() {
 
           <VStack className="mt-5 flex-1 px-4">
             <VStack>
-              <Input placeholder="Nome do Devedor" label="Nome do Devedor" />
-              <Input placeholder="Telefone" label="Telefone" />
-              <Input placeholder="Valor do Empréstimo" label="Valor do Empréstimo" />
-              <Input placeholder="Vencimento" label="Vencimento" />
+              <Controller
+                name="user.name"
+                control={control}
+                rules={{ required: "Preencha com o nome da pessoa" }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    value={value}
+                    onBlur={onBlur}
+                    label="Nome do Devedor"
+                    onChangeText={onChange}
+                    placeholder="Nome do Devedor"
+                    isInvalid={errors.user?.name?.message}
+                  />
+                )}
+              />
+
+              <Controller
+                name="user.phone"
+                control={control}
+                rules={{
+                  required: "Preencha com o Telefone da pessoa",
+                  pattern: { value: RegExValidate.PHONE, message: "Telefone inválido" },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    onBlur={onBlur}
+                    maxLength={15}
+                    onChangeText={onChange}
+                    keyboardType="phone-pad"
+                    label="Telefone do Devedor"
+                    value={phoneMask(value ?? "")}
+                    placeholder="Telefone do Devedor"
+                    isInvalid={errors.user?.phone?.message}
+                  />
+                )}
+              />
+
+              <Controller
+                name="totalDebt"
+                control={control}
+                rules={{
+                  required: "Preencha com o valor do Empréstimo",
+                  validate: {
+                    isValid: (value) => {
+                      const numberValue = Number(value);
+                      return numberValue <= 0 && "Valor não pode ser zero";
+                    },
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    maxLength={15}
+                    onBlur={onBlur}
+                    keyboardType="number-pad"
+                    label="Valor do Empréstimo"
+                    style={{ textAlign: "right" }}
+                    placeholder="Valor do Empréstimo"
+                    isInvalid={errors.totalDebt?.message}
+                    value={convertToCurrency(Number(value) / 100)}
+                    onChangeText={(text) => onChange(text.replace(/\D/g, ""))}
+                  />
+                )}
+              />
+
+              <Controller
+                name="deadline"
+                control={control}
+                rules={{
+                  required: "Preencha com o Vencimento do empréstimo",
+                  pattern: { value: RegExValidate.DATE, message: "Data inválida" },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    maxLength={10}
+                    onBlur={onBlur}
+                    label="Vencimento"
+                    placeholder="Vencimento"
+                    onChangeText={onChange}
+                    keyboardType="number-pad"
+                    value={dateMask(value ?? "")}
+                    isInvalid={errors.deadline?.message}
+                  />
+                )}
+              />
             </VStack>
 
             <Center className="mb-36 mt-12 flex-1 gap-6">
@@ -51,7 +130,7 @@ export default function NewLoan() {
         </ScrollView>
 
         <Box className="w-full border-t-2 border-gray-100 bg-gray-50 p-4 dark:border-gray-800 dark:bg-gray-900">
-          <Button>Salvar</Button>
+          <Button onPress={handleSubmit(onSubmit)}>Salvar</Button>
         </Box>
       </Container>
     </>
