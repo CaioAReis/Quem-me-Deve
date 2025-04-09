@@ -11,6 +11,7 @@ export function useNewLoan() {
   const {
     control,
     handleSubmit,
+    clearErrors,
     formState: { errors },
   } = useForm<Omit<Loan, "deadline"> & { deadline: string }>({
     defaultValues: { totalDebt: 0 },
@@ -20,9 +21,12 @@ export function useNewLoan() {
 
   const handleBack = () => navigation.goBack();
 
-  const onSubmit = (data: Omit<Loan, "deadline">) => {
-    console.warn(data);
+  const onSubmit = (data: Omit<Loan, "deadline"> & { deadline: string }) => {
+    alert("Submit");
+    console.error(data);
+
+    handleBack();
   };
 
-  return { control, handleSubmit, errors, color, handleBack, onSubmit };
+  return { control, handleSubmit, clearErrors, errors, color, handleBack, onSubmit };
 }

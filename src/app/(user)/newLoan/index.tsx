@@ -11,7 +11,7 @@ import { convertToCurrency, dateMask, phoneMask } from "@/utils/functions";
 import { RegExValidate } from "@/utils/regex";
 
 export default function NewLoan() {
-  const { control, handleSubmit, errors, onSubmit, color, handleBack } = useNewLoan();
+  const { control, handleSubmit, errors, clearErrors, onSubmit, color, handleBack } = useNewLoan();
 
   return (
     <>
@@ -74,7 +74,8 @@ export default function NewLoan() {
                   validate: {
                     isValid: (value) => {
                       const numberValue = Number(value);
-                      return numberValue <= 0 && "Valor não pode ser zero";
+                      if (numberValue <= 0) return "Valor não pode ser zero";
+                      else clearErrors("totalDebt");
                     },
                   },
                 }}
@@ -97,7 +98,6 @@ export default function NewLoan() {
                 name="deadline"
                 control={control}
                 rules={{
-                  required: "Preencha com o Vencimento do empréstimo",
                   pattern: { value: RegExValidate.DATE, message: "Data inválida" },
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
