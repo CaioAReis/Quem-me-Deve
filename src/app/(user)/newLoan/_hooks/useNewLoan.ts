@@ -1,3 +1,4 @@
+import { parse } from "date-fns";
 import { useNavigation } from "expo-router";
 import { useColorScheme } from "nativewind";
 import { useForm } from "react-hook-form";
@@ -11,7 +12,6 @@ export function useNewLoan() {
   const {
     control,
     handleSubmit,
-    clearErrors,
     formState: { errors },
   } = useForm<Omit<Loan, "deadline"> & { deadline: string }>({
     defaultValues: { totalDebt: 0 },
@@ -22,11 +22,21 @@ export function useNewLoan() {
   const handleBack = () => navigation.goBack();
 
   const onSubmit = (data: Omit<Loan, "deadline"> & { deadline: string }) => {
-    alert("Submit");
-    console.error(data);
+    const body = {
+      user: {
+        name: data.user.name,
+        phone: data.user.phone.replace(/\D/g, ""),
+      },
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      totalDebt: Number(data.totalDebt),
+      deadline: data.deadline ? parse(data.deadline, "dd/MM/yyyy", new Date()) : null,
+      history: [{ createdAt: new Date(), value: Number(data.totalDebt), type: "loan" }],
+    } as unknown as Loan;
 
+    console.warn(body);
     handleBack();
   };
 
-  return { control, handleSubmit, clearErrors, errors, color, handleBack, onSubmit };
+  return { control, handleSubmit: handleSubmit(onSubmit), errors, color, handleBack };
 }
