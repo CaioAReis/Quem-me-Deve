@@ -30,8 +30,9 @@ type historyItem = {
 };
 
 export type Loan = {
+  id: string;
   user: User;
-  totalDebt: number;
+  totalDebit: number;
   history: historyItem[];
 
   createdAt: Date;
