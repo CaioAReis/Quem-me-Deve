@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { RelativePathString, Stack } from "expo-router";
 import { FlatList } from "react-native";
 
 import { Divider, Fab, HomeHeader, HomeTabs, ListEmpty, LoanCard } from "./_components";
@@ -20,10 +20,11 @@ export default function Home() {
           data={loanList}
           renderItem={({ item }) => (
             <LoanCard
-              debit={item.totalDebt}
               since={item.createdAt}
+              debit={item.totalDebit}
               userName={item.user.name}
               loanBalance={loanBalance}
+              href={`/loanDetail/${item.id}` as RelativePathString}
             />
           )}
           ListFooterComponent={<Box className="h-28" />}
