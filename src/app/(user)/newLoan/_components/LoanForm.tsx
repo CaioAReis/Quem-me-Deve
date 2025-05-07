@@ -56,7 +56,7 @@ export function LoanForm({
       />
 
       <Controller
-        name="totalDebt"
+        name="totalDebit"
         control={control}
         rules={{
           required: "Preencha com o valor do Empréstimo",
@@ -74,7 +74,7 @@ export function LoanForm({
             label="Valor do Empréstimo"
             style={{ textAlign: "right" }}
             placeholder="Valor do Empréstimo"
-            isInvalid={errors.totalDebt?.message}
+            isInvalid={errors.totalDebit?.message}
             value={convertToCurrency(Number(value) / 100)}
             onChangeText={(text) => onChange(text.replace(/\D/g, ""))}
           />
