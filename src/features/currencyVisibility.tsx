@@ -8,7 +8,7 @@ export function CurrencyVisibility() {
   const changeVisibilityValues = useAppStore((state) => state.changeVisibilityValues);
 
   return (
-    <TouchableOpacity onPress={changeVisibilityValues}>
+    <TouchableOpacity onPress={changeVisibilityValues} activeOpacity={0.7}>
       {hiddenValues ? <Eye color="white" /> : <EyeOff color="white" />}
     </TouchableOpacity>
   );
