@@ -23,7 +23,7 @@ export type User = {
   phone: string;
 };
 
-type historyItem = {
+export type HistoryItem = {
   value: number; // IN CENTS
   createdAt: Date;
   type: "payment" | "loan";
@@ -33,7 +33,7 @@ export type Loan = {
   id: string;
   user: User;
   totalDebit: number;
-  history: historyItem[];
+  history: HistoryItem[];
 
   createdAt: Date;
   updatedAt: Date;
