@@ -14,7 +14,7 @@ export function useNewLoan() {
     handleSubmit,
     formState: { errors },
   } = useForm<Omit<Loan, "deadline"> & { deadline: string }>({
-    defaultValues: { totalDebt: 0 },
+    defaultValues: { totalDebit: 0 },
   });
 
   const color = colorScheme === "dark" ? "#e9e9ea" : "#3e3e46";
@@ -29,9 +29,9 @@ export function useNewLoan() {
       },
       createdAt: new Date(),
       updatedAt: new Date(),
-      totalDebt: Number(data.totalDebt),
+      totalDebit: Number(data.totalDebit),
       deadline: data.deadline ? parse(data.deadline, "dd/MM/yyyy", new Date()) : null,
-      history: [{ createdAt: new Date(), value: Number(data.totalDebt), type: "loan" }],
+      history: [{ createdAt: new Date(), value: Number(data.totalDebit), type: "loan" }],
     } as unknown as Loan;
 
     console.warn(body);

@@ -10,15 +10,15 @@ export function useHome({ currentTab }: { currentTab: "pending" | "paid" }) {
 
   useEffect(() => {
     let result;
-    if (currentTab === "pending") result = loans.filter((loan) => loan.totalDebt > 0);
-    else result = loans.filter((loan) => loan.totalDebt === 0);
+    if (currentTab === "pending") result = loans.filter((loan) => loan.totalDebit > 0);
+    else result = loans.filter((loan) => loan.totalDebit === 0);
 
     setLoanList(result);
   }, [currentTab]);
 
   const loanBalance =
     loans.reduce((total, current) => {
-      total += current.totalDebt;
+      total += current.totalDebit;
 
       return total;
     }, 0) / 100;
