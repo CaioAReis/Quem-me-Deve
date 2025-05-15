@@ -6,20 +6,31 @@ import { twMerge } from "tailwind-merge";
 import { Center, Text } from "./layout";
 
 type Props = {
+  colors?: string[];
   loading?: boolean;
   className?: string;
   children: ReactNode;
   variant?: "solid" | "outline";
 } & TouchableOpacityProps;
 
-export function Button({ children, loading = false, className, variant, ...rest }: Props) {
+export function Button({ children, colors, loading = false, className, variant, ...rest }: Props) {
+  const gradientColor = colors
+    ? colors.length < 2
+      ? [colors[0], colors[0]]
+      : colors
+    : ["#7740FE", "#2CDC5F"];
+
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       className={twMerge("overflow-hidden rounded-full disabled:opacity-40", className)}
       {...rest}
     >
-      <LinearGradient style={{ padding: 2 }} end={{ x: 0.6, y: 2 }} colors={["#7740FE", "#2CDC5F"]}>
+      <LinearGradient
+        style={{ padding: 2 }}
+        end={{ x: 0.6, y: 2 }}
+        colors={gradientColor as [string, string, ...string[]]}
+      >
         <Center className={`${styles[variant ?? "solid"]} rounded-full`}>
           {loading ? (
             <ActivityIndicator
