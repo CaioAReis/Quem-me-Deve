@@ -22,13 +22,13 @@ export function LoanCard({ loan }: Props) {
       </VStack>
 
       <Text variant="H5" className={styles[loan.type]}>
-        {convertToCurrency(loan?.value / 100)}
+        {loan.type === "loan" ? "-" : "+"} {convertToCurrency(loan?.value / 100)}
       </Text>
     </HStack>
   );
 }
 
 const styles = {
-  loan: "text-red-500 dark:text-red-500",
-  payment: "text-green-500 dark:text-green-500",
+  loan: "text-red-600 dark:text-red-500",
+  payment: "text-green-600 dark:text-green-500",
 };

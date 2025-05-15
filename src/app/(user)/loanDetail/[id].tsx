@@ -5,7 +5,8 @@ import { FlatList } from "react-native";
 import { ChargeView, LoanCard, LoanHead } from "./_components";
 
 import { HistoryItem } from "@/@types";
-import { Container } from "@/components/layout";
+import { Button } from "@/components";
+import { Box, Container, Divider, HStack, VStack } from "@/components/layout";
 
 const x = [
   { value: 10000, createdAt: new Date(), type: "loan" },
@@ -25,6 +26,8 @@ export default function LoanDetail() {
         <FlatList
           data={x}
           renderItem={({ item }) => <LoanCard loan={item} />}
+          ListFooterComponent={<Box className="h-20" />}
+          ItemSeparatorComponent={() => <Divider />}
           ListHeaderComponent={
             <>
               <LoanHead
@@ -37,6 +40,17 @@ export default function LoanDetail() {
             </>
           }
         />
+
+        <VStack className="gap-0">
+          <Box className="bg-gray-50 shadow-lg shadow-slate-600 dark:bg-gray-900" />
+          <HStack className="bg-gray-50 px-6 py-2 dark:bg-gray-900">
+            <Button className="flex-1" variant="outline">
+              Emprestar
+            </Button>
+
+            <Button className="flex-1">Pagamento</Button>
+          </HStack>
+        </VStack>
       </Container>
     </>
   );
