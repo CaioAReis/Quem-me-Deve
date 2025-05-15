@@ -51,7 +51,7 @@ export function LoanHead({ onGoBack, user, totalDebit }: Props) {
           </HStack>
         </VStack>
 
-        <Center className="my-6 gap-2">
+        <Center className="my-6 gap-0">
           <Text className="text-base text-white">Dívida total</Text>
 
           {hiddenValues ? (
