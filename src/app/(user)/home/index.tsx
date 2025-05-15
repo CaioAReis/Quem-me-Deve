@@ -1,11 +1,11 @@
 import { RelativePathString, Stack } from "expo-router";
 import { FlatList } from "react-native";
 
-import { Divider, Fab, HomeHeader, HomeTabs, ListEmpty, LoanCard } from "./_components";
+import { Fab, HomeHeader, HomeTabs, ListEmpty, LoanCard } from "./_components";
 import { useHome } from "./_hooks/useHome";
 import { useTabs } from "./_hooks/useTabs";
 
-import { Box, Container } from "@/components/layout";
+import { Box, Container, Divider } from "@/components/layout";
 
 export default function Home() {
   const { currentTab, handleChangeToPaid, handleChangeToPending } = useTabs();
@@ -18,6 +18,9 @@ export default function Home() {
       <Container className="relative bg-gray-50">
         <FlatList
           data={loanList}
+          ListEmptyComponent={<ListEmpty />}
+          ItemSeparatorComponent={() => <Divider />}
+          ListFooterComponent={<Box className="h-28" />}
           renderItem={({ item }) => (
             <LoanCard
               since={item.createdAt}
@@ -27,9 +30,6 @@ export default function Home() {
               href={`/loanDetail/${item.id}` as RelativePathString}
             />
           )}
-          ListFooterComponent={<Box className="h-28" />}
-          ListEmptyComponent={<ListEmpty />}
-          ItemSeparatorComponent={() => <Divider />}
           ListHeaderComponent={
             <>
               <HomeHeader loanBalance={loanBalance} />
