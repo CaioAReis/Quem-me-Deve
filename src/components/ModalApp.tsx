@@ -8,8 +8,8 @@ import { HStack, Text, VStack } from "./layout";
 
 type Props = {
   title: string;
-  children: ReactNode;
   icon: keyof typeof icons;
+  children: (close: () => void) => ReactNode;
   trigger: ReactElement<TouchableOpacityProps>;
 };
 
@@ -42,7 +42,7 @@ export function ModalApp({ title, icon, trigger, children }: Props) {
             <Text variant="H5">{title}</Text>
           </HStack>
 
-          <VStack>{children}</VStack>
+          <VStack>{children(toggleModal)}</VStack>
         </VStack>
       </Modal>
     </>

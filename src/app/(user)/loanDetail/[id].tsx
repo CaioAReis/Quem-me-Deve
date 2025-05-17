@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { FlatList } from "react-native";
 
 import { ChargeView, LoanCard, LoanHead } from "./_components";
+import { PaymentModal } from "./_components/PaymentModal";
 
 import { HistoryItem } from "@/@types";
 import { Button, ModalApp } from "@/components";
@@ -17,6 +18,8 @@ const x = [
 
 export default function LoanDetail() {
   const handleGoBack = useCallback(() => router.back(), []);
+
+  const totalDebit = x.reduce((sum, item) => sum + item.value, 0);
 
   return (
     <>
@@ -54,7 +57,7 @@ export default function LoanDetail() {
                 </Button>
               }
             >
-              <></>
+              {(close) => <></>}
             </ModalApp>
 
             <ModalApp
@@ -62,7 +65,7 @@ export default function LoanDetail() {
               title="Pagamento"
               trigger={<Button className="flex-1">Pagamento</Button>}
             >
-              <></>
+              {(close) => <PaymentModal closeModal={close} totalDebit={totalDebit} />}
             </ModalApp>
           </HStack>
         </VStack>

@@ -40,3 +40,8 @@ export type Loan = {
 
   deadline?: Date;
 };
+
+export type PaymentFormProps = {
+  totalDebit: number;
+  closeModal: () => void;
+};

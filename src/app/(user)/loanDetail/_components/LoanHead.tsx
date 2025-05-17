@@ -39,7 +39,7 @@ export function LoanHead({ onGoBack, user, totalDebit }: Props) {
                   </TouchableOpacity>
                 }
               >
-                <></>
+                {(close) => <></>}
               </ModalApp>
             </HStack>
           </HStack>
