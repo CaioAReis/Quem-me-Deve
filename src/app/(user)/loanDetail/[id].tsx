@@ -5,7 +5,7 @@ import { FlatList } from "react-native";
 import { ChargeView, LoanCard, LoanHead } from "./_components";
 
 import { HistoryItem } from "@/@types";
-import { Button } from "@/components";
+import { Button, ModalApp } from "@/components";
 import { Box, Container, Divider, HStack, VStack } from "@/components/layout";
 
 const x = [
@@ -43,12 +43,27 @@ export default function LoanDetail() {
 
         <VStack className="gap-0">
           <Box className="bg-gray-50 shadow-lg shadow-slate-600 dark:bg-gray-900" />
-          <HStack className="bg-gray-50 px-6 py-2 dark:bg-gray-900">
-            <Button className="flex-1" variant="outline">
-              Emprestar
-            </Button>
 
-            <Button className="flex-1">Pagamento</Button>
+          <HStack className="bg-gray-50 px-6 py-2 dark:bg-gray-900">
+            <ModalApp
+              icon="Coins"
+              title="Novo Empréstimo"
+              trigger={
+                <Button className="flex-1" variant="outline">
+                  Emprestar
+                </Button>
+              }
+            >
+              <></>
+            </ModalApp>
+
+            <ModalApp
+              icon="HandCoins"
+              title="Pagamento"
+              trigger={<Button className="flex-1">Pagamento</Button>}
+            >
+              <></>
+            </ModalApp>
           </HStack>
         </VStack>
       </Container>

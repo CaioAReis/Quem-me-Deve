@@ -3,7 +3,7 @@ import { ArrowLeftCircle, PenLine } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
 import { Loan } from "@/@types";
-import { Avatar } from "@/components";
+import { Avatar, ModalApp } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
 import { useAppStore } from "@/store";
@@ -30,9 +30,17 @@ export function LoanHead({ onGoBack, user, totalDebit }: Props) {
             <HStack className="gap-5">
               <CurrencyVisibility />
 
-              <TouchableOpacity activeOpacity={0.7}>
-                <PenLine color="white" />
-              </TouchableOpacity>
+              <ModalApp
+                icon="UserRound"
+                title="Editar Devedor"
+                trigger={
+                  <TouchableOpacity activeOpacity={0.7}>
+                    <PenLine color="white" />
+                  </TouchableOpacity>
+                }
+              >
+                <></>
+              </ModalApp>
             </HStack>
           </HStack>
 
