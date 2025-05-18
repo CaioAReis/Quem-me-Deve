@@ -2,8 +2,7 @@ import { router, Stack } from "expo-router";
 import { useCallback } from "react";
 import { FlatList } from "react-native";
 
-import { ChargeView, LoanCard, LoanHead } from "./_components";
-import { PaymentModal } from "./_components/PaymentModal";
+import { ChargeView, LoanCard, LoanHead, LoanModal, PaymentModal } from "./_components";
 
 import { HistoryItem } from "@/@types";
 import { Button, ModalApp } from "@/components";
@@ -57,7 +56,7 @@ export default function LoanDetail() {
                 </Button>
               }
             >
-              {(onCloseModal) => <></>}
+              {(onCloseModal) => <LoanModal onCloseModal={onCloseModal} />}
             </ModalApp>
 
             <ModalApp
