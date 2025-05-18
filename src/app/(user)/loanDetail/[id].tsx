@@ -57,7 +57,7 @@ export default function LoanDetail() {
                 </Button>
               }
             >
-              {(close) => <></>}
+              {(onCloseModal) => <></>}
             </ModalApp>
 
             <ModalApp
@@ -65,7 +65,9 @@ export default function LoanDetail() {
               title="Pagamento"
               trigger={<Button className="flex-1">Pagamento</Button>}
             >
-              {(close) => <PaymentModal closeModal={close} totalDebit={totalDebit} />}
+              {(onCloseModal) => (
+                <PaymentModal onCloseModal={onCloseModal} totalDebit={totalDebit} />
+              )}
             </ModalApp>
           </HStack>
         </VStack>

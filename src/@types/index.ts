@@ -43,5 +43,5 @@ export type Loan = {
 
 export type PaymentFormProps = {
   totalDebit: number;
-  closeModal: () => void;
+  onCloseModal: () => void;
 };

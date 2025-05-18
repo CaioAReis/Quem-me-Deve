@@ -10,8 +10,6 @@ import { Box, Container, VStack } from "@/components/layout";
 export default function NewLoan() {
   const { control, handleSubmit, errors, color, handleBack } = useNewLoan();
 
-  console.warn(errors);
-
   return (
     <>
       <Stack.Screen options={{ title: "New Loan" }} />

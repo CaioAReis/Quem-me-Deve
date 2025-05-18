@@ -9,11 +9,13 @@ import { Button, Input } from "@/components";
 import { HStack, Text, VStack } from "@/components/layout";
 import { convertToCurrency } from "@/utils/functions";
 
-export function PaymentModal({ totalDebit, closeModal }: PaymentFormProps) {
+export function PaymentModal({ totalDebit, onCloseModal }: PaymentFormProps) {
   const { control, errors, handlePayAllDebit, handleSubmit } = usePaymentForm({
     totalDebit,
-    closeModal,
+    onCloseModal,
   });
+
+  console.warn(errors);
 
   return (
     <VStack className="my-4">
