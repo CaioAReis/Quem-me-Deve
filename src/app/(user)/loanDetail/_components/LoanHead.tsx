@@ -2,6 +2,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ArrowLeftCircle, PenLine } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
+import { EditDebtorModal } from "./EditDebtorModal";
+
 import { Loan } from "@/@types";
 import { Avatar, ModalApp } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
@@ -39,7 +41,7 @@ export function LoanHead({ onGoBack, user, totalDebit }: Props) {
                   </TouchableOpacity>
                 }
               >
-                {(close) => <></>}
+                {(close) => <EditDebtorModal user={user} onCloseModal={close} />}
               </ModalApp>
             </HStack>
           </HStack>
