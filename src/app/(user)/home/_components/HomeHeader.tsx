@@ -4,11 +4,11 @@ import { Avatar } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
 import { Theme } from "@/features/theme";
-import { generateAvatar } from "@/lib";
 import { useSessionStore } from "@/store";
 import { convertToCurrency } from "@/utils/functions";
 
 export function HomeHeader({ loanBalance }: { loanBalance: number }) {
+  const session = useSessionStore((state) => state.session);
   const hiddenValues = useSessionStore((state) => state.hiddenValues);
 
   return (
@@ -16,12 +16,12 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
       <VStack className="p-6">
         <HStack className="items-center">
           <HStack className="flex-1 items-center">
-            <Avatar size="xs" name="Caio AReis" xml={generateAvatar("")} />
+            <Avatar size="xs" name="Caio AReis" xml={session?.avatar} />
 
             <VStack className="gap-0">
               <Text className="text-sm text-gray-200">Olá,</Text>
               <Text variant="H5" className="text-white">
-                Caio AReis
+                {session?.name}
               </Text>
             </VStack>
           </HStack>
