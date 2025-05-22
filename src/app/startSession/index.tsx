@@ -1,4 +1,4 @@
-import { router, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { Controller } from "react-hook-form";
 import { Image } from "react-native";
 
@@ -6,25 +6,8 @@ import { useStartSessionForm } from "./_hooks/useStartSessionForm";
 
 import { Avatar, Button, Input } from "@/components";
 import { Container, Text, VStack } from "@/components/layout";
-import { generateAvatar } from "@/lib";
-
-type UserData = {
-  name: string;
-  avatar: string;
-};
 
 export default function StartSession() {
-  const onSubmit = (data: UserData) => {
-    const userData = {
-      ...data,
-      avatar: generateAvatar(data.name),
-    } as UserData;
-
-    console.log(userData);
-
-    router.push("/(user)/home");
-  };
-
   const { control, watch, errors, handleSubmit } = useStartSessionForm();
 
   return (
@@ -63,7 +46,7 @@ export default function StartSession() {
             />
           </VStack>
 
-          <Button onPress={handleSubmit(onSubmit)} className="mt-8 w-full">
+          <Button onPress={handleSubmit} className="mt-8 w-full">
             Continue
           </Button>
         </VStack>
