@@ -5,11 +5,11 @@ import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
 import { Theme } from "@/features/theme";
 import { generateAvatar } from "@/lib";
-import { useAppStore } from "@/store";
+import { useSessionStore } from "@/store";
 import { convertToCurrency } from "@/utils/functions";
 
 export function HomeHeader({ loanBalance }: { loanBalance: number }) {
-  const hiddenValues = useAppStore((state) => state.hiddenValues);
+  const hiddenValues = useSessionStore((state) => state.hiddenValues);
 
   return (
     <LinearGradient end={{ x: 0.8, y: 1 }} colors={["#7740FE", "#2CDC5F"]}>

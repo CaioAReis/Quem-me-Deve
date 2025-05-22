@@ -8,7 +8,7 @@ import { Loan } from "@/@types";
 import { Avatar, ModalApp } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
-import { useAppStore } from "@/store";
+import { useSessionStore } from "@/store";
 import { convertToCurrency, phoneMask } from "@/utils/functions";
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
 };
 
 export function LoanHead({ onGoBack, user, totalDebit }: Props) {
-  const hiddenValues = useAppStore((state) => state.hiddenValues);
+  const hiddenValues = useSessionStore((state) => state.hiddenValues);
 
   return (
     <LinearGradient end={{ x: 0.8, y: 1 }} colors={["#7740FE", "#2CDC5F"]}>

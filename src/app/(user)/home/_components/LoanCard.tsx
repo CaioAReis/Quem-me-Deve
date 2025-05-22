@@ -5,7 +5,7 @@ import { useLoanCard } from "../_hooks/useLoanCard";
 
 import { Avatar } from "@/components";
 import { Box, HStack, Text, VStack } from "@/components/layout";
-import { useAppStore } from "@/store";
+import { useSessionStore } from "@/store";
 import { convertToCurrency } from "@/utils/functions";
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
 
 export function LoanCard({ userName, since, debit, loanBalance, href }: Props) {
   const { percent } = useLoanCard({ debit, loanBalance });
-  const hiddenValues = useAppStore((state) => state.hiddenValues);
+  const hiddenValues = useSessionStore((state) => state.hiddenValues);
 
   return (
     <Link href={href} asChild>

@@ -1,11 +1,11 @@
 import { Eye, EyeOff } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
-import { useAppStore } from "@/store";
+import { useSessionStore } from "@/store";
 
 export function CurrencyVisibility() {
-  const hiddenValues = useAppStore((state) => state.hiddenValues);
-  const changeVisibilityValues = useAppStore((state) => state.changeVisibilityValues);
+  const hiddenValues = useSessionStore((state) => state.hiddenValues);
+  const changeVisibilityValues = useSessionStore((state) => state.changeVisibilityValues);
 
   return (
     <TouchableOpacity onPress={changeVisibilityValues} activeOpacity={0.7}>
