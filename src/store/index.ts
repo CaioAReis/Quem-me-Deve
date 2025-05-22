@@ -15,6 +15,8 @@ export const useSessionStore = create<DefaultState>()(
 
       hiddenValues: false,
       changeVisibilityValues: () => set((state) => ({ hiddenValues: !state.hiddenValues })),
+
+      hasHydrated: false,
     }),
     {
       name: "app-storage",
@@ -31,6 +33,9 @@ export const useSessionStore = create<DefaultState>()(
         removeItem: async (key) => {
           await AsyncStorage.removeItem(key);
         },
+      },
+      onRehydrateStorage: (state) => {
+        state.hasHydrated = true;
       },
     }
   )

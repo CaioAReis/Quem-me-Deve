@@ -7,6 +7,8 @@ export interface DefaultState {
 
   hiddenValues: boolean;
   changeVisibilityValues: () => void;
+
+  hasHydrated: boolean;
 }
 
 export type LayoutProps = {

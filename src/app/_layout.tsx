@@ -4,7 +4,12 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
+import { LoadingScreen } from "@/components";
+import { useSessionStore } from "@/store";
+
 export default function Layout() {
+  const hasHydrated = useSessionStore((state) => state.hasHydrated);
+
   const [loaded, error] = useFonts({
     "Poppins-light": require("@/assets/fonts/Poppins-100.ttf"),
     "Poppins-regular": require("@/assets/fonts/Poppins-400.ttf"),
@@ -17,6 +22,8 @@ export default function Layout() {
   }, [loaded, error]);
 
   if (!loaded && !error) return null;
+
+  if (!hasHydrated) return <LoadingScreen />;
 
   return <Stack screenOptions={{ headerShown: false }} />;
 }
