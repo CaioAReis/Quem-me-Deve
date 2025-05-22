@@ -1,4 +1,7 @@
 export interface DefaultState {
+  session: User | null;
+  setSession: (user: User) => void;
+
   isDark: boolean;
   changeTheme: () => void;
 
