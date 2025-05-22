@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Loan } from "@/@types";
-import { loan1, loan2, loan3, loan4, loan5 } from "@/data/loans";
+import { loan1, loan2, loan3, loan4, loan5 } from "@/mocks/loans";
 
 export function useHome({ currentTab }: { currentTab: "pending" | "paid" }) {
   const [loanList, setLoanList] = useState<Loan[]>([]);

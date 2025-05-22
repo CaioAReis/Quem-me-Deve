@@ -4,7 +4,7 @@ import { Image } from "react-native";
 
 import { Button } from "@/components";
 import { Center, Container, Text } from "@/components/layout";
-import { useSessionStore } from "@/store";
+import { useSessionStore } from "@/store/session";
 
 export default function Welcome() {
   const session = useSessionStore((state) => state.session);

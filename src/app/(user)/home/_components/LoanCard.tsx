@@ -5,7 +5,7 @@ import { useLoanCard } from "../_hooks/useLoanCard";
 
 import { Avatar } from "@/components";
 import { Box, HStack, Text, VStack } from "@/components/layout";
-import { useSessionStore } from "@/store";
+import { useSessionStore } from "@/store/session";
 import { convertToCurrency } from "@/utils/functions";
 
 type Props = {

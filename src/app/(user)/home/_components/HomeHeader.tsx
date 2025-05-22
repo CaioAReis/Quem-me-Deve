@@ -4,7 +4,7 @@ import { Avatar } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
 import { Theme } from "@/features/theme";
-import { useSessionStore } from "@/store";
+import { useSessionStore } from "@/store/session";
 import { convertToCurrency } from "@/utils/functions";
 
 export function HomeHeader({ loanBalance }: { loanBalance: number }) {
@@ -16,7 +16,7 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
       <VStack className="p-6">
         <HStack className="items-center">
           <HStack className="flex-1 items-center">
-            <Avatar size="xs" name="Caio AReis" xml={session?.avatar} />
+            <Avatar size="xs" name={session?.name ?? ""} xml={session?.avatar} />
 
             <VStack className="gap-0">
               <Text className="text-sm text-gray-200">Olá,</Text>

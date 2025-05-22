@@ -8,7 +8,7 @@ import { Loan } from "@/@types";
 import { Avatar, ModalApp } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
-import { useSessionStore } from "@/store";
+import { useSessionStore } from "@/store/session";
 import { convertToCurrency, phoneMask } from "@/utils/functions";
 
 type Props = {

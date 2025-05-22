@@ -1,7 +1,7 @@
 import { Eye, EyeOff } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
-import { useSessionStore } from "@/store";
+import { useSessionStore } from "@/store/session";
 
 export function CurrencyVisibility() {
   const hiddenValues = useSessionStore((state) => state.hiddenValues);

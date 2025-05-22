@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import { User } from "@/@types";
 import { generateAvatar } from "@/lib";
-import { useSessionStore } from "@/store";
+import { useSessionStore } from "@/store/session";
 
 export function useStartSessionForm() {
   const setSession = useSessionStore((state) => state.setSession);
