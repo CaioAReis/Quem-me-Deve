@@ -1,11 +1,18 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, Redirect } from "expo-router";
 import { Image } from "react-native";
 
 import { Button } from "@/components";
 import { Center, Container, Text } from "@/components/layout";
+import { useSessionStore } from "@/store";
 
 export default function Welcome() {
+  const session = useSessionStore((state) => state.session);
+
+  if (session) {
+    return <Redirect href="/(user)/home" />;
+  }
+
   return (
     <>
       <Stack.Screen options={{ title: "Welcome" }} />
