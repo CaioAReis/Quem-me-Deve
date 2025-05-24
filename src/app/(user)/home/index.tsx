@@ -9,6 +9,7 @@ import { Box, Container, Divider } from "@/components/layout";
 
 export default function Home() {
   const { currentTab, handleChangeToPaid, handleChangeToPending } = useTabs();
+
   const { loanList, loanBalance } = useHome({ currentTab });
 
   return (

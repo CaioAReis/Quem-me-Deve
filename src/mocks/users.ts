@@ -1,28 +1,31 @@
-import { User } from "@/@types";
+import { UserScheme } from "@/store/schema";
 
-const user1 = {
+export const user1 = {
+  avatar: "",
   name: "Rosângela Lima",
   phone: "14986960066",
-} as User;
+} as UserScheme;
 
-const user2 = {
+export const user2 = {
+  avatar: "",
   name: "Yasmin Brito",
   phone: "79993904858",
-} as User;
+} as UserScheme;
 
-const user3 = {
+export const user3 = {
+  avatar: "",
   name: "Luiz Elias Gonçalves",
   phone: "93997831850",
-} as User;
+} as UserScheme;
 
-const user4 = {
+export const user4 = {
+  avatar: "",
   name: "Ruan Oliver",
   phone: "71994642360",
-} as User;
+} as UserScheme;
 
-const user5 = {
+export const user5 = {
+  avatar: "",
   name: "Thomas Francisco",
   phone: "92985784130",
-} as User;
-
-export { user1, user2, user3, user4, user5 };
+} as UserScheme;

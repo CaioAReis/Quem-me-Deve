@@ -1,3 +1,23 @@
+export type UserScheme = {
+  name: string;
+  phone: string;
+  avatar?: string;
+};
+
+export type HistoryItemScheme = {
+  value: number;
+  createdAt: string;
+  type: "payment" | "loan";
+};
+
+export type LoanScheme = {
+  userId: string;
+  totalDebit: number;
+  createdAt: string;
+  updatedAt: string;
+  deadline?: string;
+};
+
 export const schema = {
   users: {
     name: { type: "string" },

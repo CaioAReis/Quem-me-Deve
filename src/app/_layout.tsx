@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 import { LoadingScreen } from "@/components";
 import { useSessionStore } from "@/store/session";
+import { loadStore } from "@/store/db";
 
 export default function Layout() {
   const hasHydrated = useSessionStore((state) => state.hasHydrated);
@@ -19,6 +20,8 @@ export default function Layout() {
 
   useEffect(() => {
     if (loaded || error) SplashScreen.hideAsync();
+
+    loadStore();
   }, [loaded, error]);
 
   if (!loaded && !error) return null;

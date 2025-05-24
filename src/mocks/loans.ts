@@ -1,71 +1,41 @@
-import { user1, user2, user3, user4, user5 } from "./users";
+import { LoanScheme } from "@/store/schema";
 
-import { Loan } from "@/@types";
-
-const loan1 = {
-  id: "1",
-  user: user1,
+export const loan1 = {
+  userId: "user1",
   totalDebit: 30000,
-  history: [{ value: 30000, createdAt: new Date(), type: "loan" }],
-  deadline: new Date("2025-04-01"),
-  createdAt: new Date(),
-  updatedAt: new Date(),
-} as Loan;
+  deadline: new Date("2025-04-01").toISOString(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+} as LoanScheme;
 
-const loan2 = {
-  id: "2",
-  user: user2,
+export const loan2 = {
+  userId: "user2",
   totalDebit: 50000,
-  history: [
-    { value: 25000, createdAt: new Date(), type: "loan" },
-    { value: 25000, createdAt: new Date(), type: "loan" },
-  ],
-  deadline: new Date("2025-04-01"),
-  createdAt: new Date(),
-  updatedAt: new Date(),
-} as Loan;
+  deadline: new Date("2025-04-01").toISOString(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+} as LoanScheme;
 
-const loan3 = {
-  id: "3",
-  user: user3,
+export const loan3 = {
+  userId: "user3",
   totalDebit: 10000,
-  history: [
-    { value: 10000, createdAt: new Date(), type: "loan" },
-    { value: 20000, createdAt: new Date(), type: "payment" },
-    { value: 10000, createdAt: new Date(), type: "loan" },
-    { value: 10000, createdAt: new Date(), type: "loan" },
-  ],
-  deadline: new Date("2025-04-01"),
-  createdAt: new Date(),
-  updatedAt: new Date(),
-} as Loan;
+  deadline: new Date("2025-04-01").toISOString(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+} as LoanScheme;
 
-const loan4 = {
-  id: "4",
-  user: user4,
+export const loan4 = {
+  userId: "user4",
   totalDebit: 2000,
-  history: [
-    { value: 8000, createdAt: new Date(), type: "payment" },
-    { value: 10000, createdAt: new Date(), type: "loan" },
-  ],
-  deadline: new Date("2025-04-01"),
-  createdAt: new Date(),
-  updatedAt: new Date(),
-} as Loan;
+  deadline: new Date("2025-04-01").toISOString(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+} as LoanScheme;
 
-const loan5 = {
-  id: "5",
-  user: user5,
+export const loan5 = {
+  userId: "user5",
   totalDebit: 30000,
-  history: [
-    { value: 30000, createdAt: new Date(), type: "payment" },
-    { value: 20000, createdAt: new Date(), type: "payment" },
-    { value: 10000, createdAt: new Date(), type: "payment" },
-    { value: 50000, createdAt: new Date(), type: "loan" },
-  ],
-  deadline: new Date("2025-04-01"),
-  createdAt: new Date(),
-  updatedAt: new Date(),
-} as Loan;
-
-export { loan1, loan2, loan3, loan4, loan5 };
+  deadline: new Date("2025-04-01").toISOString(),
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
+} as LoanScheme;
