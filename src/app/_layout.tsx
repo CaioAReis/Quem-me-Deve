@@ -5,8 +5,8 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 
 import { LoadingScreen } from "@/components";
-import { useSessionStore } from "@/store/session";
 import { loadStore } from "@/store/db";
+import { useSessionStore } from "@/store/session";
 
 export default function Layout() {
   const hasHydrated = useSessionStore((state) => state.hasHydrated);

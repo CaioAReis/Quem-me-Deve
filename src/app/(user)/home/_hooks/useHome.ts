@@ -1,23 +1,22 @@
 import { useEffect, useState } from "react";
 
 import { Loan } from "@/@types";
-import { loan1, loan2, loan3, loan4, loan5 } from "@/mocks/loans";
+import { getLoansWithUsersAndHistory } from "@/services";
 
 export function useHome({ currentTab }: { currentTab: "pending" | "paid" }) {
   const [loanList, setLoanList] = useState<Loan[]>([]);
 
-  const loans = [loan1, loan2, loan3, loan4, loan5] as Loan[];
-
   useEffect(() => {
-    let result;
-    if (currentTab === "pending") result = loans.filter((loan) => loan.totalDebit > 0);
-    else result = loans.filter((loan) => loan.totalDebit === 0);
+    let result = getLoansWithUsersAndHistory();
 
-    setLoanList(result);
+    if (currentTab === "pending") result = result.filter((loan) => loan.totalDebit > 0);
+    else result = result.filter((loan) => loan.totalDebit === 0);
+
+    setLoanList(result as Loan[]);
   }, [currentTab]);
 
   const loanBalance =
-    loans.reduce((total, current) => {
+    loanList.reduce((total, current) => {
       total += current.totalDebit;
 
       return total;

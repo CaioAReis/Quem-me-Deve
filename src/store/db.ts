@@ -47,7 +47,6 @@ export const loadStore = async () => {
   await persister.load();
   persister.startAutoSave();
 
-  //  TODO: Set the data mock here
   db.setTable("users", {
     user1,
     user2,
@@ -79,6 +78,4 @@ export const loadStore = async () => {
     history12,
     history13,
   });
-
-  console.error(db.getTables());
 };
