@@ -29,3 +29,11 @@ export const user5 = {
   name: "Thomas Francisco",
   phone: "92985784130",
 } as UserScheme;
+
+export const users = {
+  user1,
+  user2,
+  user3,
+  user4,
+  user5,
+};

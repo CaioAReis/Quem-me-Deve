@@ -4,23 +4,9 @@ import { createCustomPersister } from "tinybase/persisters";
 
 import { schema } from "./schema";
 
-import {
-  history1,
-  history10,
-  history11,
-  history12,
-  history13,
-  history2,
-  history3,
-  history4,
-  history5,
-  history6,
-  history7,
-  history8,
-  history9,
-} from "@/mocks/hitory";
-import { loan1, loan2, loan3, loan4, loan5 } from "@/mocks/loans";
-import { user1, user2, user3, user4, user5 } from "@/mocks/users";
+import { histories } from "@/mocks/histories";
+import { loans } from "@/mocks/loans";
+import { users } from "@/mocks/users";
 
 export const db = createStore().setTablesSchema(schema as TablesSchema);
 
@@ -47,35 +33,9 @@ export const loadStore = async () => {
   await persister.load();
   persister.startAutoSave();
 
-  db.setTable("users", {
-    user1,
-    user2,
-    user3,
-    user4,
-    user5,
-  });
+  db.setTable("users", users);
 
-  db.setTable("loans", {
-    loan1,
-    loan2,
-    loan3,
-    loan4,
-    loan5,
-  });
+  db.setTable("loans", loans);
 
-  db.setTable("history", {
-    history1,
-    history2,
-    history3,
-    history4,
-    history5,
-    history6,
-    history7,
-    history8,
-    history9,
-    history10,
-    history11,
-    history12,
-    history13,
-  });
+  db.setTable("history", histories);
 };

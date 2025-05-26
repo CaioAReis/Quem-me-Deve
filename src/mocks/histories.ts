@@ -90,3 +90,19 @@ export const history13 = {
   loanId: "loan5",
   createdAt: "2025-05-20T10:00:00.000Z",
 } as HistoryItemScheme;
+
+export const histories = {
+  history1,
+  history2,
+  history3,
+  history4,
+  history5,
+  history6,
+  history7,
+  history8,
+  history9,
+  history10,
+  history11,
+  history12,
+  history13,
+};

@@ -39,3 +39,11 @@ export const loan5 = {
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),
 } as LoanScheme;
+
+export const loans = {
+  loan1,
+  loan2,
+  loan3,
+  loan4,
+  loan5,
+};
