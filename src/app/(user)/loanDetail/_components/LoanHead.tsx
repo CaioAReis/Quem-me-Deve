@@ -68,7 +68,7 @@ export function LoanHead({ onGoBack, user, totalDebit }: Props) {
             <Box className="mt-2 h-14 w-2/3 rounded-lg bg-gray-200/55" />
           ) : (
             <Text variant="H1" className="font-poppinsBold text-white">
-              {convertToCurrency(totalDebit)}
+              {convertToCurrency(totalDebit / 100)}
             </Text>
           )}
         </Center>
