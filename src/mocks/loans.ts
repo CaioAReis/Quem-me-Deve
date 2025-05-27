@@ -34,7 +34,7 @@ export const loan4 = {
 
 export const loan5 = {
   userId: "user5",
-  totalDebit: 30000,
+  totalDebit: 50000,
   deadline: new Date("2025-04-01").toISOString(),
   createdAt: new Date().toISOString(),
   updatedAt: new Date().toISOString(),

@@ -65,7 +65,7 @@ export const history9 = {
 
 export const history10 = {
   value: 30000,
-  type: "payment",
+  type: "loan",
   loanId: "loan5",
   createdAt: "2025-05-20T10:00:00.000Z",
 } as HistoryItemScheme;
