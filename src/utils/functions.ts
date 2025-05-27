@@ -1,5 +1,12 @@
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 export const convertToCurrency = (value: number) => {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+};
+
+export const convertDateToBR = (date: Date) => {
+  return format(date, "dd/MM/yyyy", { locale: ptBR });
 };
 
 export const dateMask = (value: string) =>

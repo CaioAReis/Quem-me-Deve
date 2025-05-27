@@ -2,7 +2,7 @@ import { ArrowDown, ArrowUp } from "lucide-react-native";
 
 import { HistoryItem } from "@/@types";
 import { HStack, Text, VStack } from "@/components/layout";
-import { convertToCurrency } from "@/utils/functions";
+import { convertDateToBR, convertToCurrency } from "@/utils/functions";
 
 type Props = {
   loan: HistoryItem;
@@ -17,7 +17,7 @@ export function LoanCard({ loan }: Props) {
       <VStack className="flex-1 gap-1">
         <Text variant="H6">Você {loan.type === "loan" ? "Emprestou" : "Recebeu"}</Text>
         <Text className="text-xs text-gray-600 dark:text-gray-400">
-          {loan?.createdAt?.toLocaleDateString()}
+          {convertDateToBR(loan.createdAt) ?? "Data não disponível"}
         </Text>
       </VStack>
 

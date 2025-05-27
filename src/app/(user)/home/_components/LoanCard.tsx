@@ -6,7 +6,7 @@ import { useLoanCard } from "../_hooks/useLoanCard";
 import { Avatar } from "@/components";
 import { Box, HStack, Text, VStack } from "@/components/layout";
 import { useSessionStore } from "@/store/session";
-import { convertToCurrency } from "@/utils/functions";
+import { convertDateToBR, convertToCurrency } from "@/utils/functions";
 
 type Props = {
   since: Date;
@@ -33,7 +33,7 @@ export function LoanCard({ userName, since, debit, loanBalance, href }: Props) {
               </Text>
 
               <Text className="text-xs text-gray-600">
-                Desde {since.toLocaleDateString("pt-BR")}
+                Desde {convertDateToBR(since) ?? "Não disponível"}
               </Text>
             </VStack>
           </HStack>
