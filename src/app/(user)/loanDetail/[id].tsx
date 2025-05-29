@@ -8,7 +8,8 @@ import { Button, ModalApp } from "@/components";
 import { Box, Container, Divider, HStack, VStack } from "@/components/layout";
 
 export default function LoanDetail() {
-  const { handleGoBack, loanDetails, totalDebit, totalPayment } = useLoanDetail();
+  const { handleGoBack, loanDetails, onUserUpdate, setLoanDetails, totalDebit, totalPayment } =
+    useLoanDetail();
 
   return (
     <>
@@ -27,6 +28,7 @@ export default function LoanDetail() {
                 <LoanHead
                   onGoBack={handleGoBack}
                   user={loanDetails.user}
+                  onUserUpdate={onUserUpdate}
                   totalDebit={(totalDebit ?? 0) - (totalPayment ?? 0)}
                 />
 
@@ -49,7 +51,9 @@ export default function LoanDetail() {
                 </Button>
               }
             >
-              {(onCloseModal) => <LoanModal onCloseModal={onCloseModal} />}
+              {(onCloseModal) => (
+                <LoanModal setLoanDetails={setLoanDetails} onCloseModal={onCloseModal} />
+              )}
             </ModalApp>
 
             <ModalApp

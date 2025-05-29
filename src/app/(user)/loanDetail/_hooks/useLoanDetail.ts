@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 
-import { Loan } from "@/@types";
+import { Loan, User } from "@/@types";
 import { getLoanDetails } from "@/services";
 
 export function useLoanDetail() {
@@ -22,6 +22,16 @@ export function useLoanDetail() {
     { totalDebit: 0, totalPayment: 0 }
   );
 
+  const onUserUpdate = (user: Partial<User>) => {
+    setLoanDetails((prev) => {
+      if (!prev) return null;
+      return {
+        ...prev,
+        user: { ...prev.user, ...user },
+      };
+    });
+  };
+
   useEffect(() => {
     const result = getLoanDetails(id as string);
 
@@ -30,5 +40,5 @@ export function useLoanDetail() {
     }
   }, []);
 
-  return { handleGoBack, loanDetails, totalDebit, totalPayment };
+  return { handleGoBack, loanDetails, onUserUpdate, setLoanDetails, totalDebit, totalPayment };
 }

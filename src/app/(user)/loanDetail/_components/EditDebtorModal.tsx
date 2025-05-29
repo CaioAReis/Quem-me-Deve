@@ -6,14 +6,16 @@ import { useEditDebtForm } from "../_hooks/useEditDebtor";
 import { User } from "@/@types";
 import { Button, Input } from "@/components";
 import { HStack, Text, VStack } from "@/components/layout";
+import { phoneMask } from "@/utils/functions";
 
 type Props = {
   onCloseModal: VoidFunction;
   user: Pick<User, "name" | "phone">;
+  onUserUpdate: (user: Partial<User>) => void;
 };
 
-export function EditDebtorModal({ user, onCloseModal }: Props) {
-  const { control, errors, handleSubmit } = useEditDebtForm({ user, onCloseModal });
+export function EditDebtorModal({ user, onUserUpdate, onCloseModal }: Props) {
+  const { control, errors, handleSubmit } = useEditDebtForm({ user, onUserUpdate, onCloseModal });
 
   return (
     <VStack className="my-4">
@@ -40,10 +42,12 @@ export function EditDebtorModal({ user, onCloseModal }: Props) {
           rules={{ required: "Preencha com o telefone do Devedor" }}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-              value={value}
+              maxLength={15}
               onBlur={onBlur}
               label="Telefone"
               onChangeText={onChange}
+              keyboardType="phone-pad"
+              value={phoneMask(value ?? "")}
               isInvalid={errors.name?.message}
               placeholder="Telefone do Devedor"
             />

@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 
 import { EditDebtorModal } from "./EditDebtorModal";
 
-import { Loan } from "@/@types";
+import { User } from "@/@types";
 import { Avatar, ModalApp } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
 import { CurrencyVisibility } from "@/features/currencyVisibility";
@@ -12,12 +12,13 @@ import { useSessionStore } from "@/store/session";
 import { convertToCurrency, phoneMask } from "@/utils/functions";
 
 type Props = {
-  user: Loan["user"];
+  user: User;
   totalDebit: number;
   onGoBack: VoidFunction;
+  onUserUpdate: (user: Partial<User>) => void;
 };
 
-export function LoanHead({ onGoBack, user, totalDebit }: Props) {
+export function LoanHead({ onGoBack, user, onUserUpdate, totalDebit }: Props) {
   const hiddenValues = useSessionStore((state) => state.hiddenValues);
 
   return (
@@ -41,7 +42,9 @@ export function LoanHead({ onGoBack, user, totalDebit }: Props) {
                   </TouchableOpacity>
                 }
               >
-                {(close) => <EditDebtorModal user={user} onCloseModal={close} />}
+                {(close) => (
+                  <EditDebtorModal onUserUpdate={onUserUpdate} user={user} onCloseModal={close} />
+                )}
               </ModalApp>
             </HStack>
           </HStack>

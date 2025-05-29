@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 
 import { User } from "@/@types";
+import { updateUser } from "@/services";
 
 type Props = {
+  user: User;
   onCloseModal: VoidFunction;
-  user: Pick<User, "name" | "phone">;
+  onUserUpdate: (user: Partial<User>) => void;
 };
 
-export function useEditDebtForm({ user, onCloseModal }: Props) {
+export function useEditDebtForm({ user, onUserUpdate, onCloseModal }: Props) {
   const {
     control,
     handleSubmit,
@@ -20,7 +22,9 @@ export function useEditDebtForm({ user, onCloseModal }: Props) {
   });
 
   const onSubmit = (data: Pick<User, "name" | "phone">) => {
-    console.warn(data);
+    updateUser(user.id!, data);
+
+    onUserUpdate(data);
 
     onCloseModal();
   };
