@@ -52,7 +52,11 @@ export default function LoanDetail() {
               }
             >
               {(onCloseModal) => (
-                <LoanModal setLoanDetails={setLoanDetails} onCloseModal={onCloseModal} />
+                <LoanModal
+                  loanId={loanDetails?.id}
+                  onCloseModal={onCloseModal}
+                  setLoanDetails={setLoanDetails}
+                />
               )}
             </ModalApp>
 

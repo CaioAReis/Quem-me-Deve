@@ -3,11 +3,9 @@ import { db } from "@/store/db";
 
 export const getLoansWithUsersAndHistory = () => {
   const loans = db.getTable("loans");
-  // const histories = db.getTable("history");
 
   const result = Object.entries(loans).map(([loanId, loan]) => {
     const userRow = db.getRow("users", String(loan.userId));
-    // const loanHistory = Object.values(histories).filter((item) => item.loanId === loanId);
 
     const user = {
       id: userRow.id,
@@ -50,14 +48,14 @@ export const getLoanDetails = (loanId: string) => {
     }));
 
   const user = {
-    id: userRow.id,
     name: userRow.name,
     phone: userRow.phone,
+    id: String(loan.userId),
   } as User;
 
   return {
     user,
-    id: loan.id,
+    id: loanId,
     totalDebit: Number(loan.totalDebit),
     history: history as unknown as HistoryItem[],
     deadline: new Date(String(loan.deadline ?? "")),
@@ -70,7 +68,7 @@ export const updateUser = (userId: string, updates: Partial<User>) => {
   const currentUser = db.getRow("users", userId);
 
   if (!currentUser) {
-    console.warn(`Usuário com ID ${userId} não encontrado.`);
+    console.warn(`User not found: ${userId}.`);
     return;
   }
 
@@ -80,34 +78,47 @@ export const updateUser = (userId: string, updates: Partial<User>) => {
   });
 };
 
-export const createHistoryItem = ({
-  loanId,
-  value,
-  type,
-}: {
+type CreateHistoryItemProps = {
+  value: number;
   loanId: string;
-  value: string;
   type: "payment" | "loan";
-}) => {
-  const historyId = generateId("history"); // ou use seu próprio gerador de ID
-  db.setRow("history", historyId, {
-    loanId,
-    value,
-    type,
-  });
 };
 
-export const updateLoanTotalDebit = (loanId: string, newTotal: number) => {
+export const createHistoryItem = ({ loanId, value, type }: CreateHistoryItemProps) => {
+  const historyId = generateId("history");
+  const createdAt = new Date();
+
+  db.setRow("history", historyId, {
+    type,
+    loanId,
+    value: Number(value),
+    createdAt: createdAt.toISOString(),
+  });
+
+  return {
+    type,
+    createdAt,
+    id: historyId,
+    value: Number(value),
+  } as HistoryItem;
+};
+
+type UpdateLoanTotalDebitProps = { loanId: string; newTotal: number };
+
+export const updateLoanTotalDebit = ({ loanId, newTotal }: UpdateLoanTotalDebitProps) => {
   const currentLoan = db.getRow("loans", loanId);
+
   if (!currentLoan) {
     console.warn(`Empréstimo com ID ${loanId} não encontrado.`);
     return;
   }
 
   db.setRow("loans", loanId, {
-    ...currentLoan,
+    userId: currentLoan.userId,
     totalDebit: newTotal,
-    updatedAt: new Date().toISOString(), // Atualiza timestamp
+    createdAt: currentLoan.createdAt,
+    updatedAt: new Date().toISOString(),
+    deadline: currentLoan.deadline ?? "",
   });
 };
 

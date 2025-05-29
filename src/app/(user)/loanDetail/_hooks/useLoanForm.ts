@@ -20,13 +20,22 @@ export function useLoanForm({ onCloseModal, loanId, setLoanDetails }: Props) {
   const onSubmit = (data: Pick<HistoryItem, "value">) => {
     setLoanDetails((prev) => {
       if (!prev) return null;
+
       const newHistory = createHistoryItem({
+        loanId,
         type: "loan",
-        loanId: prev?.id,
         value: data?.value ?? 0,
       });
 
-      return { ...prev, history: [...prev.history, newHistory] };
+      const totalDebit = prev.totalDebit + data.value;
+
+      // updateLoanTotalDebit({ loanId, newTotal: totalDebit });
+
+      return {
+        ...prev,
+        totalDebit,
+        history: newHistory ? [...prev.history, newHistory] : [...prev.history],
+      };
     });
 
     onCloseModal();
