@@ -1,5 +1,5 @@
 import { RelativePathString, Stack } from "expo-router";
-import { FlatList } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 
 import { Fab, HomeHeader, HomeTabs, ListEmpty, LoanCard } from "./_components";
 import { useHome } from "./_hooks/useHome";
@@ -10,7 +10,7 @@ import { Box, Container, Divider } from "@/components/layout";
 export default function Home() {
   const { currentTab, handleChangeToPaid, handleChangeToPending } = useTabs();
 
-  const { loanList, loanBalance } = useHome({ currentTab });
+  const { loanList, loanBalance, reload } = useHome({ currentTab });
 
   return (
     <>
@@ -19,9 +19,12 @@ export default function Home() {
       <Container className="relative bg-gray-50">
         <FlatList
           data={loanList}
+          onRefresh={reload}
+          refreshing={false}
           ListEmptyComponent={<ListEmpty />}
           ItemSeparatorComponent={() => <Divider />}
           ListFooterComponent={<Box className="h-28" />}
+          refreshControl={<RefreshControl refreshing={false} onRefresh={reload} />}
           renderItem={({ item }) => (
             <LoanCard
               since={item.createdAt}

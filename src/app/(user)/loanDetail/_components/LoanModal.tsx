@@ -1,14 +1,26 @@
 import { Info } from "lucide-react-native";
+import { Dispatch } from "react";
 import { Controller } from "react-hook-form";
 
 import { useLoanForm } from "../_hooks/useLoanForm";
 
+import { Loan } from "@/@types";
 import { Button, Input } from "@/components";
 import { HStack, Text, VStack } from "@/components/layout";
 import { convertToCurrency } from "@/utils/functions";
 
-export function LoanModal({ onCloseModal }: { onCloseModal: VoidFunction }) {
-  const { control, errors, handleSubmit } = useLoanForm({ onCloseModal });
+type Props = {
+  loanId?: string;
+  onCloseModal: VoidFunction;
+  setLoanDetails: Dispatch<React.SetStateAction<Loan | null>>;
+};
+
+export function LoanModal({ onCloseModal, setLoanDetails, loanId }: Props) {
+  const { control, errors, handleSubmit } = useLoanForm({
+    onCloseModal,
+    setLoanDetails,
+    loanId: loanId ?? "",
+  });
 
   return (
     <VStack className="my-4">

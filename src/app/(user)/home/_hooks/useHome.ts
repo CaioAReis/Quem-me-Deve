@@ -6,13 +6,17 @@ import { getLoansWithUsersAndHistory } from "@/services";
 export function useHome({ currentTab }: { currentTab: "pending" | "paid" }) {
   const [loanList, setLoanList] = useState<Loan[]>([]);
 
-  useEffect(() => {
+  const fetchData = () => {
     let result = getLoansWithUsersAndHistory();
 
     if (currentTab === "pending") result = result.filter((loan) => loan.totalDebit > 0);
     else result = result.filter((loan) => loan.totalDebit === 0);
 
     setLoanList(result as Loan[]);
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [currentTab]);
 
   const loanBalance =
@@ -22,5 +26,5 @@ export function useHome({ currentTab }: { currentTab: "pending" | "paid" }) {
       return total;
     }, 0) / 100;
 
-  return { loanList, loanBalance };
+  return { loanList, loanBalance, reload: fetchData };
 }

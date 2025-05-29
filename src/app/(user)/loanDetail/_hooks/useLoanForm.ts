@@ -1,16 +1,33 @@
+import { Dispatch } from "react";
 import { useForm } from "react-hook-form";
 
-import { HistoryItem } from "@/@types";
+import { HistoryItem, Loan } from "@/@types";
+import { createHistoryItem } from "@/services";
 
-export function useLoanForm({ onCloseModal }: { onCloseModal: VoidFunction }) {
+type Props = {
+  loanId: string;
+  onCloseModal: VoidFunction;
+  setLoanDetails: Dispatch<React.SetStateAction<Loan | null>>;
+};
+
+export function useLoanForm({ onCloseModal, loanId, setLoanDetails }: Props) {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<HistoryItem>({ defaultValues: { value: 0 } });
+  } = useForm<Pick<HistoryItem, "value">>({ defaultValues: { value: 0 } });
 
-  const onSubmit = (data: HistoryItem) => {
-    console.warn(data.value);
+  const onSubmit = (data: Pick<HistoryItem, "value">) => {
+    setLoanDetails((prev) => {
+      if (!prev) return null;
+      const newHistory = createHistoryItem({
+        type: "loan",
+        loanId: prev?.id,
+        value: data?.value ?? 0,
+      });
+
+      return { ...prev, history: [...prev.history, newHistory] };
+    });
 
     onCloseModal();
   };
