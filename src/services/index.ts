@@ -113,13 +113,17 @@ export const updateLoanTotalDebit = ({ loanId, newTotal }: UpdateLoanTotalDebitP
     return;
   }
 
-  db.setRow("loans", loanId, {
-    userId: currentLoan.userId,
+  const loanUpdated = {
     totalDebit: newTotal,
+    userId: currentLoan.userId,
     createdAt: currentLoan.createdAt,
     updatedAt: new Date().toISOString(),
     deadline: currentLoan.deadline ?? "",
-  });
+  };
+
+  db.setRow("loans", loanId, loanUpdated);
+
+  return loanUpdated;
 };
 
 export const createUserLoan = (name: string, phone: string, value: string, deadline: string) => {

@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import { useForm } from "react-hook-form";
 
 import { HistoryItem, Loan } from "@/@types";
-import { createHistoryItem } from "@/services";
+import { createHistoryItem, updateLoanTotalDebit } from "@/services";
 
 type Props = {
   loanId: string;
@@ -27,9 +27,9 @@ export function useLoanForm({ onCloseModal, loanId, setLoanDetails }: Props) {
         value: data?.value ?? 0,
       });
 
-      const totalDebit = prev.totalDebit + data.value;
+      const totalDebit = Number(prev.totalDebit) + Number(data.value);
 
-      // updateLoanTotalDebit({ loanId, newTotal: totalDebit });
+      updateLoanTotalDebit({ loanId, newTotal: totalDebit });
 
       return {
         ...prev,
