@@ -67,7 +67,9 @@ export default function LoanDetail() {
             >
               {(onCloseModal) => (
                 <PaymentModal
+                  loanId={loanDetails?.id}
                   onCloseModal={onCloseModal}
+                  setLoanDetails={setLoanDetails}
                   totalDebit={(totalDebit ?? 0) - (totalPayment ?? 0)}
                 />
               )}

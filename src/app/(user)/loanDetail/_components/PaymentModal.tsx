@@ -4,15 +4,17 @@ import { TouchableOpacity } from "react-native";
 
 import { usePaymentForm } from "../_hooks/usePaymentForm";
 
-import { PaymentFormProps } from "@/@types";
+import { NewItemProps } from "@/@types";
 import { Button, Input } from "@/components";
 import { HStack, Text, VStack } from "@/components/layout";
 import { convertToCurrency } from "@/utils/functions";
 
-export function PaymentModal({ totalDebit, onCloseModal }: PaymentFormProps) {
+export function PaymentModal({ totalDebit, setLoanDetails, loanId, onCloseModal }: NewItemProps) {
   const { control, errors, handlePayAllDebit, handleSubmit } = usePaymentForm({
+    loanId,
     totalDebit,
     onCloseModal,
+    setLoanDetails,
   });
 
   console.warn(errors);
@@ -20,14 +22,15 @@ export function PaymentModal({ totalDebit, onCloseModal }: PaymentFormProps) {
   return (
     <VStack className="my-4">
       <Controller
-        name="paymentValue"
+        name="value"
         control={control}
         rules={{
           required: "Preencha com o valor recebido",
           validate: {
             isValid: (value) => {
               if (value === 0) return "Valor não pode ser zero";
-              if (value > totalDebit) return "O valor não pode ser maior que a dívida";
+              if (totalDebit !== undefined && value > totalDebit)
+                return "O valor não pode ser maior que a dívida";
             },
           },
         }}
@@ -39,7 +42,7 @@ export function PaymentModal({ totalDebit, onCloseModal }: PaymentFormProps) {
             label="Valor do Pagamento"
             style={{ textAlign: "right" }}
             placeholder="Valor do Pagamento"
-            isInvalid={errors.paymentValue?.message}
+            isInvalid={errors.value?.message}
             value={convertToCurrency(Number(value) / 100)}
             onChangeText={(text) => onChange(text.replace(/\D/g, ""))}
           />

@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export interface DefaultState {
   session: User | null;
   setSession: (user: User) => void;
@@ -48,7 +50,9 @@ export type Loan = {
   deadline?: Date;
 };
 
-export type PaymentFormProps = {
-  totalDebit: number;
-  onCloseModal: () => void;
+export type NewItemProps = {
+  loanId?: string;
+  totalDebit?: number;
+  onCloseModal: VoidFunction;
+  setLoanDetails: Dispatch<React.SetStateAction<Loan | null>>;
 };
