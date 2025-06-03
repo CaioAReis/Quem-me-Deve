@@ -1,4 +1,5 @@
 import { FontAwesome } from "@expo/vector-icons";
+import * as Linking from "expo-linking";
 import { Clock, HandCoins, Phone } from "lucide-react-native";
 import { useColorScheme } from "nativewind";
 import { TouchableOpacity } from "react-native";
@@ -15,11 +16,13 @@ export function ChargeView({ phone, deadline }: Props) {
   const iconColor = colorScheme === "dark" ? "#e9e9ea" : "#292932";
 
   const handleCallToUser = () => {
-    alert("Ligar para o usuário");
+    const url = `tel:${phone}`;
+    Linking.openURL(url);
   };
 
   const handleGoToWhatsapp = () => {
-    alert("Abrir no Zap");
+    const url = `https://wa.me/55${phone}?text=${encodeURIComponent("Olá, tudo bem? Só passando para lembrar daquele valor que combinamos. Você teria uma previsão de quando conseguirá fazer o pagamento?")}`;
+    Linking.openURL(url);
   };
 
   return (
