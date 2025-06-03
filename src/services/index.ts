@@ -126,17 +126,24 @@ export const updateLoanTotalDebit = ({ loanId, newTotal }: UpdateLoanTotalDebitP
   return loanUpdated;
 };
 
-export const createUserLoan = (name: string, phone: string, value: string, deadline: string) => {
+type CreateUserLoanProps = {
+  name: string;
+  phone: string;
+  value: number;
+  deadline: string;
+};
+
+export const createUserLoan = ({ name, phone, value, deadline }: CreateUserLoanProps) => {
   const userId = generateId("user");
   const loanId = generateId("loan");
   const historyId = generateId("history");
+
   const now = new Date().toISOString();
 
-  // Criar o usuário
   db.setRow("users", userId, {
     name,
     phone,
-    avatar: "", // ou defina um avatar padrão
+    avatar: "",
   });
 
   // Criar o empréstimo

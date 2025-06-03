@@ -4,6 +4,7 @@ import { useColorScheme } from "nativewind";
 import { useForm } from "react-hook-form";
 
 import { Loan } from "@/@types";
+import { createUserLoan } from "@/services";
 
 export function useNewLoan() {
   const navigation = useNavigation();
@@ -34,7 +35,13 @@ export function useNewLoan() {
       history: [{ createdAt: new Date(), value: Number(data.totalDebit), type: "loan" }],
     } as unknown as Loan;
 
-    console.warn(body);
+    createUserLoan({
+      name: body.user.name,
+      phone: body.user.phone,
+      value: body.history[0].value ?? 0,
+      deadline: body.deadline!.toDateString(),
+    });
+
     handleBack();
   };
 
