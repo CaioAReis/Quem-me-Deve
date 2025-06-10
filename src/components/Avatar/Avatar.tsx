@@ -36,13 +36,14 @@ export function Avatar({ xml, name, size = "base", className }: Props) {
       )}
     >
       <LinearGradient
+        testID="avatar-gradient"
         end={{ x: 1.1, y: 0.3 }}
         colors={["#7740FE", "#2CDC5F"]}
         style={{ width: dim, height: dim }}
       >
         <Center className="size-full">
           {xml ? (
-            <SvgXml width="100%" height="100%" xml={xml} />
+            <SvgXml testID="xml-avatar" width="100%" height="100%" xml={xml} />
           ) : (
             <Text className={`font-poppinsMedium text-gray-50 text-${label}`}>
               {lettersName.toLocaleUpperCase()}
