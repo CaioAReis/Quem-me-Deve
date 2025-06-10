@@ -1,4 +1,4 @@
-import { Avatar } from "./Avatar";
+import { Avatar } from "./Avatar/Avatar";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { LoadingScreen } from "./LoadingScreen";

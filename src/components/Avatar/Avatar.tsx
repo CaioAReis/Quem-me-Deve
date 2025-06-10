@@ -2,7 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { SvgXml } from "react-native-svg";
 import { twMerge } from "tailwind-merge";
 
-import { Box, Center, Text } from "./layout";
+import { Box, Center, Text } from "../layout";
 
 type Props = {
   xml?: string;
