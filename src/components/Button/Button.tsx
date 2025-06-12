@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { ActivityIndicator, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
-import { Center, Text } from "./layout";
+import { Center, Text } from "../layout";
 
 type Props = {
   colors?: string[];
@@ -13,9 +13,16 @@ type Props = {
   variant?: "solid" | "outline";
 } & TouchableOpacityProps;
 
-export function Button({ children, colors, loading = false, className, variant, ...rest }: Props) {
+export function Button({
+  colors,
+  children,
+  className,
+  loading = false,
+  variant = "solid",
+  ...rest
+}: Props) {
   const gradientColor = colors
-    ? colors.length < 2
+    ? colors.length === 1
       ? [colors[0], colors[0]]
       : colors
     : ["#7740FE", "#2CDC5F"];
@@ -23,6 +30,7 @@ export function Button({ children, colors, loading = false, className, variant, 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
+      testID="touchable-button"
       className={twMerge("overflow-hidden rounded-full disabled:opacity-40", className)}
       {...rest}
     >
@@ -31,14 +39,15 @@ export function Button({ children, colors, loading = false, className, variant, 
         end={{ x: 0.6, y: 2 }}
         colors={gradientColor as [string, string, ...string[]]}
       >
-        <Center className={`${styles[variant ?? "solid"]} rounded-full`}>
+        <Center testID="contain-button" className={`${styles[variant]} rounded-full`}>
           {loading ? (
             <ActivityIndicator
               size="small"
-              className={`size-11 ${colorStyles[variant ?? "solid"]}`}
+              testID="loading-button"
+              className={`size-11 ${colorStyles[variant]}`}
             />
           ) : (
-            <Text variant="H5" className={`${colorStyles[variant ?? "solid"]} m-2 text-center`}>
+            <Text variant="H5" className={`${colorStyles[variant]} m-2 text-center`}>
               {children}
             </Text>
           )}
