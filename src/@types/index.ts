@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import { ViewProps } from "react-native";
 
 export interface DefaultState {
   session: User | null;
@@ -16,7 +17,7 @@ export interface DefaultState {
 export type LayoutProps = {
   className?: string;
   children?: React.ReactNode;
-};
+} & ViewProps;
 
 export type TextProps = {
   className?: string;
