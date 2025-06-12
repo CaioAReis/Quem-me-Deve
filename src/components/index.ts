@@ -1,6 +1,6 @@
 import { Avatar } from "./Avatar/Avatar";
 import { Button } from "./Button/Button";
-import { Input } from "./Input";
+import { Input } from "./Input/Input";
 import { LoadingScreen } from "./LoadingScreen";
 import { ModalApp } from "./ModalApp";
 

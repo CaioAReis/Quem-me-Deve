@@ -2,7 +2,7 @@ import { CircleX } from "lucide-react-native";
 import { TextInput, TextInputProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
-import { Box, HStack, Text } from "./layout";
+import { Box, HStack, Text } from "../layout";
 
 type Props = {
   label?: string;
@@ -13,11 +13,12 @@ type Props = {
 export function Input({ label, isDisabled, isInvalid, ...rest }: Props) {
   return (
     <Box className="w-full gap-2">
-      <Text variant="H6" className={twMerge(isInvalid && styles.labelInvalid)}>
+      <Text testID="input-label" variant="H6" className={twMerge(isInvalid && styles.labelInvalid)}>
         {label}
       </Text>
 
       <TextInput
+        testID="input-field"
         cursorColor="#7740FE"
         editable={!isDisabled}
         className={twMerge(
@@ -30,7 +31,7 @@ export function Input({ label, isDisabled, isInvalid, ...rest }: Props) {
       />
 
       {isInvalid && (
-        <HStack className="items-center gap-1">
+        <HStack testID="invalid-input" className="items-center gap-1">
           <CircleX size={14} color="#ef4444" />
           <Text className="text-sm text-red-600 dark:text-red-500">{isInvalid}</Text>
         </HStack>
