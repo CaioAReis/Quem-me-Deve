@@ -1,5 +1,5 @@
 import { Box } from "./Box/Box";
-import { Center } from "./Center";
+import { Center } from "./Center/Center";
 import { Container } from "./Container";
 import { Divider } from "./Divider";
 import { HStack } from "./HStack";
