@@ -4,6 +4,6 @@ import { Container } from "./Container/Container";
 import { Divider } from "./Divider/Divider";
 import { HStack } from "./HStack/HStack";
 import { Text } from "./Text";
-import { VStack } from "./VStack";
+import { VStack } from "./VStack/VStack";
 
 export { Box, Center, Container, Divider, HStack, Text, VStack };
