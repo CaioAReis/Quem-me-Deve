@@ -1,4 +1,4 @@
-import { Box } from "./Box";
+import { Box } from "./Box/Box";
 import { Center } from "./Center";
 import { Container } from "./Container";
 import { Divider } from "./Divider";
