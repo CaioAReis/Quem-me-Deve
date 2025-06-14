@@ -1,6 +1,6 @@
 import { Box } from "./Box/Box";
 import { Center } from "./Center/Center";
-import { Container } from "./Container";
+import { Container } from "./Container/Container";
 import { Divider } from "./Divider";
 import { HStack } from "./HStack";
 import { Text } from "./Text";

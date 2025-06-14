@@ -3,7 +3,7 @@ import { Puzzle } from "lucide-react-native";
 
 import { Button } from "@/components";
 import { Center, Text, VStack } from "@/components/layout";
-import { Container } from "@/components/layout/Container";
+import { Container } from "@/components/layout/Container/Container";
 
 export default function NotFoundScreen() {
   return (
