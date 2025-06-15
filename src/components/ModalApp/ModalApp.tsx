@@ -15,7 +15,10 @@ type Props = {
 };
 
 export function ModalApp({ title, icon, trigger, isTest = false, children }: Props) {
-  const { Icon, isOpen, toggleModal, triggerWithProps } = useModalApp({ trigger, icon });
+  const { LucideIcon, iconColor, isOpen, toggleModal, triggerWithProps } = useModalApp({
+    icon,
+    trigger,
+  });
 
   return (
     <>
@@ -34,7 +37,7 @@ export function ModalApp({ title, icon, trigger, isTest = false, children }: Pro
       >
         <VStack className=" rounded-xl bg-white p-6">
           <HStack testID="modal-header" className="items-center gap-2">
-            <Icon />
+            <LucideIcon color={iconColor} />
             <Text variant="H5">{title}</Text>
           </HStack>
 

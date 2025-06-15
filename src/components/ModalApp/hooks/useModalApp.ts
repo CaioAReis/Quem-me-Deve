@@ -21,7 +21,5 @@ export function useModalApp({ trigger, icon }: Props) {
     onPress: toggleModal,
   });
 
-  const Icon = () => LucideIcon({ color: iconColor });
-
-  return { Icon, isOpen, toggleModal, triggerWithProps };
+  return { LucideIcon, iconColor, isOpen, toggleModal, triggerWithProps };
 }
