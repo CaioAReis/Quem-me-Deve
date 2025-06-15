@@ -71,6 +71,7 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "setupFiles": ["./jestSetupFile.js"],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{ts,tsx,js,jsx}",
