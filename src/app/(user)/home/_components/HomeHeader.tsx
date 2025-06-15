@@ -2,7 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { Avatar } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
-import { CurrencyVisibility } from "@/features/currencyVisibility";
+import { CurrencyVisibility } from "@/features/currencyVisibility/currencyVisibility";
 import { Theme } from "@/features/theme";
 import { useSessionStore } from "@/store/session";
 import { convertToCurrency } from "@/utils/functions";

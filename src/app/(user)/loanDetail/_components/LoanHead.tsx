@@ -7,7 +7,7 @@ import { EditDebtorModal } from "./EditDebtorModal";
 import { User } from "@/@types";
 import { Avatar, ModalApp } from "@/components";
 import { Box, Center, HStack, Text, VStack } from "@/components/layout";
-import { CurrencyVisibility } from "@/features/currencyVisibility";
+import { CurrencyVisibility } from "@/features/currencyVisibility/currencyVisibility";
 import { useSessionStore } from "@/store/session";
 import { convertToCurrency, phoneMask } from "@/utils/functions";
 
