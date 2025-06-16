@@ -1,3 +1,3 @@
-import { generateAvatar } from "./dicebear/generateAvatar";
+import { generateAvatar } from "./dicebear/generateAvatar/generateAvatar";
 
 export { generateAvatar };
