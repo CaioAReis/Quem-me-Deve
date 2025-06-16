@@ -79,7 +79,8 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/expo-env.d.ts",
-      "!**/.expo/**"
+      "!**/.expo/**",
+      "!src/mocks/**"
     ]
   },
   "private": true,
