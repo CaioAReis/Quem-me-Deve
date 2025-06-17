@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Loan } from "@/@types";
-import { getLoansWithUsersAndHistory } from "@/services";
+import { getLoansWithUsersAndHistory } from "@/services/services";
 
 export function useHome({ currentTab }: { currentTab: "pending" | "paid" }) {
   const [loanList, setLoanList] = useState<Loan[]>([]);

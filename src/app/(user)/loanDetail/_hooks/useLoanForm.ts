@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import { useForm } from "react-hook-form";
 
 import { HistoryItem, Loan } from "@/@types";
-import { createHistoryItem, updateLoanTotalDebit } from "@/services";
+import { createHistoryItem, updateLoanTotalDebit } from "@/services/services";
 
 type Props = {
   loanId: string;

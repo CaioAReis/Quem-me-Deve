@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 
 import { User } from "@/@types";
-import { updateUser } from "@/services";
+import { updateUser } from "@/services/services";
 
 type Props = {
   user: User;

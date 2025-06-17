@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 
 import { NewItemProps } from "@/@types";
-import { createHistoryItem, updateLoanTotalDebit } from "@/services";
+import { createHistoryItem, updateLoanTotalDebit } from "@/services/services";
 
 export function usePaymentForm({ totalDebit, loanId, setLoanDetails, onCloseModal }: NewItemProps) {
   const {

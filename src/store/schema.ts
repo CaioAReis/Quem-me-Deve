@@ -40,3 +40,20 @@ export const schema = {
     createdAt: { type: "string" },
   },
 };
+
+export type Tables = {
+  users: Record<string, { name: string; phone: string; avatar: string }>;
+
+  loans: Record<
+    string,
+    {
+      userId: string;
+      totalDebit: number;
+      createdAt: string;
+      updatedAt: string;
+      deadline: string;
+    }
+  >;
+
+  history: Record<string, { loanId: string; value: number; type: string; createdAt: string }>;
+};

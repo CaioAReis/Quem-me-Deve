@@ -2,7 +2,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 
 import { Loan, User } from "@/@types";
-import { getLoanDetails } from "@/services";
+import { getLoanDetails } from "@/services/services";
 
 export function useLoanDetail() {
   const { id } = useLocalSearchParams();

@@ -4,7 +4,7 @@ import { useColorScheme } from "nativewind";
 import { useForm } from "react-hook-form";
 
 import { Loan } from "@/@types";
-import { createUserLoan } from "@/services";
+import { createUserLoan } from "@/services/services";
 
 export function useNewLoan() {
   const navigation = useNavigation();

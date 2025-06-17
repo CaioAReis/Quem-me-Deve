@@ -71,7 +71,9 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "setupFiles": ["./jestSetupFile.js"],
+    "setupFiles": [
+      "./jestSetupFile.js"
+    ],
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{ts,tsx,js,jsx}",
@@ -79,8 +81,13 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/expo-env.d.ts",
+      "!metro.config.js",
+      "!tailwind.config.js",
+      "!prettier.config.js",
       "!**/.expo/**",
-      "!src/mocks/**"
+      "!src/mocks/**",
+      "!src/store/**",
+      ".*\\.d\\.ts$"
     ]
   },
   "private": true,
