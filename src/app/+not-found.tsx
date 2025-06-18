@@ -18,7 +18,9 @@ export default function NotFoundScreen() {
             <Text>Página não encontrada!</Text>
           </VStack>
           <Link href="/" asChild>
-            <Button className="w-full">Voltar ao início</Button>
+            <Button testID="goback-notfound" className="w-full">
+              Voltar ao início
+            </Button>
           </Link>
         </Center>
       </Container>
