@@ -1,12 +1,14 @@
 import {
-  // updateUser,
+  updateUser,
   generateId,
   createUserLoan,
   getLoanDetails,
-  // createHistoryItem,
-  // updateLoanTotalDebit,
+  createHistoryItem,
+  updateLoanTotalDebit,
   getLoansWithUsersAndHistory,
 } from "../services";
+
+import { db } from "@/store/db";
 
 describe("Services", () => {
   beforeEach(() => {
@@ -112,9 +114,81 @@ describe("Services", () => {
     });
   });
 
-  describe("updateUser", () => {});
+  describe("updateUser", () => {
+    it("Checking that db.setRow is called to update user data", () => {
+      const updates = {
+        name: "User One Updated",
+        phone: "79999999999",
+      };
 
-  describe("createHistoryItem", () => {});
+      updateUser("user1", updates);
 
-  describe("updateLoanTotalDebit", () => {});
+      expect(db.setRow).toHaveBeenCalled();
+    });
+
+    it("Checking that db.setRow is not called to update user data", () => {
+      const updates = {
+        name: "User One Updated",
+        phone: "79999999999",
+      };
+
+      updateUser("user11", updates);
+
+      expect(db.setRow).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("createHistoryItem", () => {
+    describe("Valid loanId", () => {
+      it("Checking that created a payment", () => {
+        const history = createHistoryItem({ loanId: "loan1", type: "payment", value: 40000 });
+
+        expect(history).toBeTruthy();
+        expect(history).toHaveProperty("id");
+        expect(history).toHaveProperty("createdAt");
+      });
+
+      it("Checking that created a loan", () => {
+        const history = createHistoryItem({ loanId: "loan1", type: "loan", value: 40000 });
+
+        expect(history).toBeTruthy();
+        expect(history).toHaveProperty("id");
+        expect(history).toHaveProperty("createdAt");
+      });
+    });
+
+    describe("Invalid loanId", () => {
+      it("Checking that loan has not been created", () => {
+        const history = createHistoryItem({ loanId: "loan11", type: "loan", value: 40000 });
+
+        expect(history).toBeFalsy();
+      });
+
+      it("Checking that payment has not been created", () => {
+        const history = createHistoryItem({ loanId: "loan11", type: "payment", value: 40000 });
+
+        expect(history).toBeFalsy();
+      });
+    });
+  });
+
+  describe("updateLoanTotalDebit", () => {
+    describe("Valid loanId", () => {
+      it("Checking that total debit was updated", () => {
+        const loan = updateLoanTotalDebit({ loanId: "loan1", newTotal: 40000 });
+
+        expect(loan).toBeTruthy();
+        expect(loan).toHaveProperty("totalDebit");
+        expect(loan?.totalDebit).toBe(40000);
+      });
+    });
+
+    describe("Invalid loanId", () => {
+      it("Checking that total debit was not updated", () => {
+        const loan = updateLoanTotalDebit({ loanId: "loan11", newTotal: 40000 });
+
+        expect(loan).toBeFalsy();
+      });
+    });
+  });
 });

@@ -75,7 +75,7 @@ jest.mock("@/store/db", () => ({
       }
 
       if (data[id]) return { ...data[id], id };
-      return null;
+      else return null;
     }),
 
     getTable: jest.fn((table) => {

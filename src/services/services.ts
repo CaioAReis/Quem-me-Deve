@@ -18,9 +18,9 @@ export const getLoansWithUsersAndHistory = () => {
       id: loanId,
       history: [],
       totalDebit: loan.totalDebit,
-      deadline: new Date(String(loan.deadline ?? "")),
-      updatedAt: new Date(String(loan.updatedAt ?? "")),
-      createdAt: new Date(String(loan.createdAt ?? "")),
+      deadline: new Date(String(loan.deadline)),
+      updatedAt: new Date(String(loan.updatedAt)),
+      createdAt: new Date(String(loan.createdAt)),
     } as Loan;
   });
 
@@ -58,9 +58,9 @@ export const getLoanDetails = (loanId: string) => {
     id: loanId,
     totalDebit: Number(loan.totalDebit),
     history: history as unknown as HistoryItem[],
-    deadline: new Date(String(loan.deadline ?? "")),
-    createdAt: new Date(String(loan.createdAt ?? "")),
-    updatedAt: new Date(String(loan.updatedAt ?? "")),
+    deadline: new Date(String(loan.deadline)),
+    createdAt: new Date(String(loan.createdAt)),
+    updatedAt: new Date(String(loan.updatedAt)),
   } as Loan;
 };
 
@@ -85,6 +85,13 @@ type CreateHistoryItemProps = {
 };
 
 export const createHistoryItem = ({ loanId, value, type }: CreateHistoryItemProps) => {
+  const loan = db.getRow("loans", loanId);
+
+  if (!loan) {
+    console.warn(`Empréstimo com ID ${loanId} não encontrado.`);
+    return null;
+  }
+
   const historyId = generateId("history");
   const createdAt = new Date();
 
@@ -106,19 +113,19 @@ export const createHistoryItem = ({ loanId, value, type }: CreateHistoryItemProp
 type UpdateLoanTotalDebitProps = { loanId: string; newTotal: number };
 
 export const updateLoanTotalDebit = ({ loanId, newTotal }: UpdateLoanTotalDebitProps) => {
-  const currentLoan = db.getRow("loans", loanId);
+  const loan = db.getRow("loans", loanId);
 
-  if (!currentLoan) {
+  if (!loan) {
     console.warn(`Empréstimo com ID ${loanId} não encontrado.`);
     return;
   }
 
   const loanUpdated = {
     totalDebit: newTotal,
-    userId: currentLoan.userId,
-    createdAt: currentLoan.createdAt,
+    userId: loan.userId,
+    createdAt: loan.createdAt,
     updatedAt: new Date().toISOString(),
-    deadline: currentLoan.deadline ?? "",
+    deadline: loan.deadline,
   };
 
   db.setRow("loans", loanId, loanUpdated);
