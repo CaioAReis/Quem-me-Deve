@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { ActivityIndicator, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
@@ -13,49 +13,89 @@ type Props = {
   variant?: "solid" | "outline";
 } & TouchableOpacityProps;
 
-export function Button({
-  colors,
-  children,
-  className,
-  loading = false,
-  variant = "solid",
-  ...rest
-}: Props) {
-  const gradientColor = colors
-    ? colors.length === 1
-      ? [colors[0], colors[0]]
-      : colors
-    : ["#7740FE", "#2CDC5F"];
+export const Button = forwardRef<TouchableOpacityProps, Props>(
+  ({ colors, children, className, loading = false, variant = "solid", ...rest }, ref) => {
+    const gradientColor = colors
+      ? colors.length === 1
+        ? [colors[0], colors[0]]
+        : colors
+      : ["#7740FE", "#2CDC5F"];
 
-  return (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      testID="touchable-button"
-      className={twMerge("overflow-hidden rounded-full disabled:opacity-40", className)}
-      {...rest}
-    >
-      <LinearGradient
-        style={{ padding: 2 }}
-        end={{ x: 0.6, y: 2 }}
-        colors={gradientColor as [string, string, ...string[]]}
+    return (
+      <TouchableOpacity
+        ref={ref}
+        activeOpacity={0.7}
+        testID="touchable-button"
+        className={twMerge("overflow-hidden rounded-full disabled:opacity-40", className)}
+        {...rest}
       >
-        <Center testID="contain-button" className={`${styles[variant]} rounded-full`}>
-          {loading ? (
-            <ActivityIndicator
-              size="small"
-              testID="loading-button"
-              className={`size-11 ${colorStyles[variant]}`}
-            />
-          ) : (
-            <Text variant="H5" className={`${colorStyles[variant]} m-2 text-center`}>
-              {children}
-            </Text>
-          )}
-        </Center>
-      </LinearGradient>
-    </TouchableOpacity>
-  );
-}
+        <LinearGradient
+          style={{ padding: 2 }}
+          end={{ x: 0.6, y: 2 }}
+          colors={gradientColor as [string, string, ...string[]]}
+        >
+          <Center testID="contain-button" className={`${styles[variant]} rounded-full`}>
+            {loading ? (
+              <ActivityIndicator
+                size="small"
+                testID="loading-button"
+                className={`size-11 ${colorStyles[variant]}`}
+              />
+            ) : (
+              <Text variant="H5" className={`${colorStyles[variant]} m-2 text-center`}>
+                {children}
+              </Text>
+            )}
+          </Center>
+        </LinearGradient>
+      </TouchableOpacity>
+    );
+  }
+);
+
+// export function Button({
+//   colors,
+//   children,
+//   className,
+//   loading = false,
+//   variant = "solid",
+//   ...rest
+// }: Props) {
+//   const gradientColor = colors
+//     ? colors.length === 1
+//       ? [colors[0], colors[0]]
+//       : colors
+//     : ["#7740FE", "#2CDC5F"];
+
+//   return (
+//     <TouchableOpacity
+//       activeOpacity={0.7}
+//       testID="touchable-button"
+//       className={twMerge("overflow-hidden rounded-full disabled:opacity-40", className)}
+//       {...rest}
+//     >
+//       <LinearGradient
+//         style={{ padding: 2 }}
+//         end={{ x: 0.6, y: 2 }}
+//         colors={gradientColor as [string, string, ...string[]]}
+//       >
+//         <Center testID="contain-button" className={`${styles[variant]} rounded-full`}>
+//           {loading ? (
+//             <ActivityIndicator
+//               size="small"
+//               testID="loading-button"
+//               className={`size-11 ${colorStyles[variant]}`}
+//             />
+//           ) : (
+//             <Text variant="H5" className={`${colorStyles[variant]} m-2 text-center`}>
+//               {children}
+//             </Text>
+//           )}
+//         </Center>
+//       </LinearGradient>
+//     </TouchableOpacity>
+//   );
+// }
 
 const styles = {
   solid: "bg-transparent",
