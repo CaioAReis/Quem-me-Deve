@@ -3,6 +3,7 @@ import "../../global.css";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
+import { View } from "react-native";
 
 import { LoadingScreen } from "@/components";
 import { loadStore } from "@/store/db";
@@ -11,7 +12,7 @@ import { useSessionStore } from "@/store/session";
 export default function Layout() {
   const hasHydrated = useSessionStore((state) => state.hasHydrated);
 
-  const [loaded, error] = useFonts({
+  const [loaded] = useFonts({
     "Poppins-light": require("@/assets/fonts/Poppins-100.ttf"),
     "Poppins-regular": require("@/assets/fonts/Poppins-400.ttf"),
     "Poppins-medium": require("@/assets/fonts/Poppins-500.ttf"),
@@ -19,14 +20,23 @@ export default function Layout() {
   });
 
   useEffect(() => {
-    if (loaded || error) SplashScreen.hideAsync();
+    const prepare = async () => {
+      if (loaded) {
+        await SplashScreen.hideAsync();
+        loadStore();
+      }
+    };
 
-    loadStore();
-  }, [loaded, error]);
+    prepare();
+  }, [loaded]);
 
-  if (!loaded && !error) return null;
+  if (!loaded) return null;
 
   if (!hasHydrated) return <LoadingScreen />;
 
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <View testID="root" style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerShown: false }} />
+    </View>
+  );
 }

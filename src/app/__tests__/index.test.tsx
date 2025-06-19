@@ -5,10 +5,6 @@ import Welcome from "../index";
 import { Text } from "@/components/layout";
 import { useSessionStore } from "@/store/session";
 
-jest.mock("@/store/session", () => ({
-  useSessionStore: jest.fn(),
-}));
-
 describe("Welcome", () => {
   it("Checking that screen was rendered", () => {
     (useSessionStore as unknown as jest.Mock).mockImplementation((selector) =>

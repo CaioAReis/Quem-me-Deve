@@ -145,8 +145,19 @@ jest.mock("@/store/db", () => ({
 
     setRow: jest.fn(),
   },
+  loadStore: jest.fn(),
 }));
 
 jest.mock("@react-native-async-storage/async-storage", () =>
   require("@react-native-async-storage/async-storage/jest/async-storage-mock")
 );
+
+jest.mock("./global.css", () => ({}));
+
+jest.mock("expo-font", () => ({
+  useFonts: jest.fn(),
+}));
+
+jest.mock("@/store/session", () => ({
+  useSessionStore: jest.fn(),
+}));
