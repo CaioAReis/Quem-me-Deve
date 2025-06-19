@@ -33,13 +33,14 @@ export default function Welcome() {
           >
             <Image
               resizeMode="contain"
+              testID="image-welcome"
               className="ml-9 size-64"
               source={require("@/assets/images/finances.png")}
             />
           </LinearGradient>
         </Center>
 
-        <Center className="gap-6 p-6">
+        <Center className="gap-6 p-6" testID="content-welcome">
           <Text variant="H3" className="text-center leading-[1.6]">
             {"Garanta o controle do\n seu dinheiro emprestado!"}
           </Text>
@@ -49,7 +50,9 @@ export default function Welcome() {
           </Text>
 
           <Link href="/startSession" asChild>
-            <Button className="mt-8 w-full">Continuar</Button>
+            <Button testID="continue-welcome" className="mt-8 w-full">
+              Continuar
+            </Button>
           </Link>
         </Center>
       </Container>
