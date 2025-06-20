@@ -161,3 +161,10 @@ jest.mock("expo-font", () => ({
 jest.mock("@/store/session", () => ({
   useSessionStore: jest.fn(),
 }));
+
+jest.mock("expo-router", () => ({
+  router: {
+    push: jest.fn(),
+    goBack: jest.fn(),
+  },
+}));

@@ -14,7 +14,7 @@ export default function StartSession() {
     <>
       <Stack.Screen options={{ title: "StartSession" }} />
 
-      <Container className="bg-gray-50">
+      <Container testID="content" className="bg-gray-50">
         <Image className="m-8 size-12" source={require("@/assets/images/logo.png")} />
 
         <VStack className="w-full items-center justify-center gap-12 p-6">
@@ -35,6 +35,7 @@ export default function StartSession() {
               rules={{ required: "Preencha com seu nome" }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input
+                  testID="input"
                   value={value}
                   onBlur={onBlur}
                   label="Seu Nome"
