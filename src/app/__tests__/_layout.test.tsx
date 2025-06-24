@@ -6,17 +6,6 @@ import Layout from "../_layout";
 import { useSessionStore } from "@/store/session";
 
 describe("_layout", () => {
-  // it("Checking that was rendered", () => {
-  //   (useFonts as jest.Mock).mockReturnValue([false, null]);
-  //   (useSessionStore as unknown as jest.Mock).mockImplementation((selector) =>
-  //     selector({ hasHydrated: false })
-  //   );
-
-  //   renderRouter({ _layout: Layout }, { initialUrl: "/" });
-
-  //   // expect(screen.getByTestId("logo-loading")).toBeTruthy();
-  // });
-
   it("Show SplashScreen when Zustand is not loaded", () => {
     (useFonts as jest.Mock).mockReturnValue([true]);
 
