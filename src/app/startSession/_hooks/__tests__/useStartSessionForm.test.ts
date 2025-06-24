@@ -6,10 +6,13 @@ import { useStartSessionForm } from "../useStartSessionForm";
 import { useSessionStore } from "@/store/session";
 
 describe("useStartSessionForm", () => {
-  const setSession = jest.fn();
-
   beforeEach(() => {
-    (useSessionStore as unknown as jest.Mock).mockReturnValue(setSession);
+    const mockFunction = jest.fn();
+
+    (useSessionStore as unknown as jest.Mock).mockImplementation((selector) =>
+      selector({ setSession: mockFunction })
+    );
+
     jest.clearAllMocks();
   });
 
@@ -22,7 +25,7 @@ describe("useStartSessionForm", () => {
   });
 
   it("Checking redirect onSubmit", async () => {
-    const spy = jest.spyOn(router, "push").mockImplementation(() => {});
+    const spy = jest.spyOn(router, "push").mockImplementation(() => null);
 
     const { result } = renderHook(() => useStartSessionForm());
 
