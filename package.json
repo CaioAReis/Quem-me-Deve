@@ -75,7 +75,7 @@
     "setupFiles": [
       "./jestSetupFile.js"
     ],
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{ts,tsx,js,jsx}",
       "!**/coverage/**",
