@@ -15,7 +15,7 @@ export function TabButton({ label, icon, selected, onPress }: Props) {
   const selectedColor = selected ? "#7740FE" : "#7e7e84";
 
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.8} className="flex-1">
+    <TouchableOpacity testID="tab-button" onPress={onPress} activeOpacity={0.8} className="flex-1">
       <HStack
         className={`items-center justify-center gap-2 border-b-2 px-2 pb-1 ${selected ? styles.lineSelected : styles.linedefault}`}
       >
