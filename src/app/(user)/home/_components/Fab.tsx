@@ -7,7 +7,7 @@ import { Center } from "@/components/layout";
 export function Fab() {
   return (
     <Link href="/(user)/newLoan" asChild>
-      <Button className="absolute bottom-20 right-12">
+      <Button testID="fab-button" className="absolute bottom-20 right-12">
         <Center className="p-2">
           <Plus color="white" size={30} />
         </Center>
