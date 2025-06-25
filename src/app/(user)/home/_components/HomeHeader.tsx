@@ -16,7 +16,7 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
       <VStack className="p-6">
         <HStack className="items-center">
           <HStack className="flex-1 items-center">
-            <Avatar size="xs" name={session?.name ?? ""} xml={session?.avatar} />
+            <Avatar size="xs" name={session!.name} xml={session?.avatar} />
 
             <VStack className="gap-0">
               <Text className="text-sm text-gray-200">Olá,</Text>
@@ -37,7 +37,7 @@ export function HomeHeader({ loanBalance }: { loanBalance: number }) {
           <Text className="text-base text-white">Balanço total</Text>
 
           {hiddenValues ? (
-            <Box className="mt-2 h-14 w-2/3 rounded-lg bg-gray-200/55" />
+            <Box testID="hidden" className="mt-2 h-14 w-2/3 rounded-lg bg-gray-200/55" />
           ) : (
             <Text variant="H1" className="font-poppinsBold text-white">
               {convertToCurrency(loanBalance)}
