@@ -6,6 +6,7 @@ export function ListEmpty() {
   return (
     <Center className="gap-6 py-8">
       <Image
+        testID="image-empty"
         resizeMode="contain"
         className="h-52 w-3/4"
         source={require("@/assets/images/empty.png")}
