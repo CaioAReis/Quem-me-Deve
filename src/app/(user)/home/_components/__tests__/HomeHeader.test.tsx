@@ -5,10 +5,6 @@ import { HomeHeader } from "../HomeHeader";
 import { useSessionStore } from "@/store/session";
 
 describe("HomeHeader", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it("Checking that renders correctly", () => {
     (useSessionStore as unknown as jest.Mock).mockImplementation((selector) =>
       selector({

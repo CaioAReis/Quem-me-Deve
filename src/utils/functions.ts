@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, isValid } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 export const convertToCurrency = (value: number) => {
@@ -6,7 +6,9 @@ export const convertToCurrency = (value: number) => {
 };
 
 export const convertDateToBR = (date: Date) => {
-  return format(date, "dd/MM/yyyy", { locale: ptBR });
+  const valid = isValid(date);
+  if (valid) return format(date, "dd/MM/yyyy", { locale: ptBR });
+  return null;
 };
 
 export const dateMask = (value: string) =>

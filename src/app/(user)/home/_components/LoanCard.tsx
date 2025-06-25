@@ -39,7 +39,7 @@ export function LoanCard({ userName, since, debit, loanBalance, href }: Props) {
           </HStack>
 
           {hiddenValues ? (
-            <Box className="h-8 w-28 rounded-lg bg-gray-200 dark:bg-gray-700" />
+            <Box testID="hidden" className="h-8 w-28 rounded-lg bg-gray-200 dark:bg-gray-700" />
           ) : (
             <HStack className="items-center gap-2">
               <Box className="rounded-full bg-orange-400 px-2 py-1">
