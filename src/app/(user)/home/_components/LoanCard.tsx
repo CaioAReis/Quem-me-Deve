@@ -22,7 +22,7 @@ export function LoanCard({ userName, since, debit, loanBalance, href }: Props) {
 
   return (
     <Link href={href} asChild>
-      <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity activeOpacity={0.7} testID="loan-card">
         <HStack className="items-center justify-between px-6 py-1">
           <HStack className="flex-1 items-center gap-3">
             <Avatar name={userName} size="xs" />
