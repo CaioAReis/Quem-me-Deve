@@ -9,7 +9,7 @@ type Props = {
 
 export function NewLoanFooter({ image, title }: Props) {
   return (
-    <Center className="mb-36 mt-12 flex-1 gap-6">
+    <Center className="mb-36 mt-12 flex-1 gap-6" testID="new-loan-footer">
       <Image
         className="size-56"
         resizeMode="contain"
