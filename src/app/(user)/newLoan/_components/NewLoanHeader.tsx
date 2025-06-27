@@ -11,8 +11,8 @@ type Props = {
 
 export function NewLoanHeader({ handleBack, color, title }: Props) {
   return (
-    <HStack className="m-4 items-center ">
-      <TouchableOpacity onPress={handleBack}>
+    <HStack className="m-4 items-center" testID="new-loan-header">
+      <TouchableOpacity testID="arrow-back" onPress={handleBack}>
         <ArrowLeftCircle size={30} color={color} />
       </TouchableOpacity>
 
