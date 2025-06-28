@@ -72,6 +72,7 @@ export function LoanForm({
             onBlur={onBlur}
             keyboardType="number-pad"
             label="Valor do Empréstimo"
+            testID="loan-form-total-debit"
             style={{ textAlign: "right" }}
             placeholder="Valor do Empréstimo"
             isInvalid={errors.totalDebit?.message}
@@ -104,6 +105,7 @@ export function LoanForm({
             placeholder="Vencimento"
             onChangeText={onChange}
             keyboardType="number-pad"
+            testID="loan-form-deadline"
             value={dateMask(value ?? "")}
             isInvalid={errors.deadline?.message}
           />
