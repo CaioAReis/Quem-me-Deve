@@ -26,7 +26,7 @@ export function LoanHead({ onGoBack, user, onUserUpdate, totalDebit }: Props) {
       <Box className="p-6">
         <VStack className="gap-4">
           <HStack className="items-center justify-between">
-            <TouchableOpacity onPress={onGoBack} activeOpacity={0.7}>
+            <TouchableOpacity testID="back" onPress={onGoBack} activeOpacity={0.7}>
               <ArrowLeftCircle color="white" size={30} />
             </TouchableOpacity>
 
@@ -37,7 +37,7 @@ export function LoanHead({ onGoBack, user, onUserUpdate, totalDebit }: Props) {
                 icon="UserRound"
                 title="Editar Devedor"
                 trigger={
-                  <TouchableOpacity activeOpacity={0.7}>
+                  <TouchableOpacity testID="edit-user" activeOpacity={0.7}>
                     <PenLine color="white" />
                   </TouchableOpacity>
                 }
@@ -68,7 +68,7 @@ export function LoanHead({ onGoBack, user, onUserUpdate, totalDebit }: Props) {
           <Text className="text-base text-white">Dívida total</Text>
 
           {hiddenValues ? (
-            <Box className="mt-2 h-14 w-2/3 rounded-lg bg-gray-200/55" />
+            <Box testID="hidden-value" className="mt-2 h-14 w-2/3 rounded-lg bg-gray-200/55" />
           ) : (
             <Text variant="H1" className="font-poppinsBold text-white">
               {convertToCurrency(totalDebit / 100)}
