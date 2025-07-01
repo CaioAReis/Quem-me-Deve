@@ -27,6 +27,7 @@ export function EditDebtorModal({ user, onUserUpdate, onCloseModal }: Props) {
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
               label="Nome"
+              testID="name"
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
@@ -42,13 +43,14 @@ export function EditDebtorModal({ user, onUserUpdate, onCloseModal }: Props) {
           rules={{ required: "Preencha com o telefone do Devedor" }}
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
+              testID="phone"
               maxLength={15}
               onBlur={onBlur}
               label="Telefone"
               onChangeText={onChange}
               keyboardType="phone-pad"
-              value={phoneMask(value ?? "")}
-              isInvalid={errors.name?.message}
+              value={phoneMask(value)}
+              isInvalid={errors.phone?.message}
               placeholder="Telefone do Devedor"
             />
           )}
