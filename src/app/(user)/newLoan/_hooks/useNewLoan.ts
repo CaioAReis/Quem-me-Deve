@@ -38,8 +38,8 @@ export function useNewLoan() {
     createUserLoan({
       name: body.user.name,
       phone: body.user.phone,
-      value: body.history[0].value ?? 0,
-      deadline: body.deadline!.toDateString(),
+      value: body.history[0].value,
+      deadline: body.deadline?.toDateString() ?? "",
     });
 
     handleBack();
