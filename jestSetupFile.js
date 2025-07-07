@@ -161,3 +161,7 @@ jest.mock("expo-font", () => ({
 jest.mock("@/store/session", () => ({
   useSessionStore: jest.fn(),
 }));
+
+jest.mock("@expo/vector-icons", () => ({
+  FontAwesome: () => null,
+}));

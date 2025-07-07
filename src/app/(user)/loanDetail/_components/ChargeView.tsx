@@ -39,11 +39,11 @@ export function ChargeView({ phone, deadline }: Props) {
         </HStack>
 
         <HStack className="gap-5">
-          <TouchableOpacity onPress={handleCallToUser} activeOpacity={0.7}>
+          <TouchableOpacity testID="call-btn" onPress={handleCallToUser} activeOpacity={0.7}>
             <Phone color={iconColor} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={handleGoToWhatsapp} activeOpacity={0.7}>
+          <TouchableOpacity testID="whts-btn" onPress={handleGoToWhatsapp} activeOpacity={0.7}>
             <FontAwesome color={iconColor} name="whatsapp" size={24} />
           </TouchableOpacity>
         </HStack>
