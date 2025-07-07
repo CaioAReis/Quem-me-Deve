@@ -19,7 +19,7 @@ export function LoanModal({ onCloseModal, setLoanDetails, loanId }: Props) {
   const { control, errors, handleSubmit } = useLoanForm({
     onCloseModal,
     setLoanDetails,
-    loanId: loanId ?? "",
+    loanId: loanId!,
   });
 
   return (
@@ -28,10 +28,10 @@ export function LoanModal({ onCloseModal, setLoanDetails, loanId }: Props) {
         name="value"
         control={control}
         rules={{
-          required: "Preencha com o valor recebido",
+          required: "Preencha com o valor emprestado",
           validate: {
             isValid: (value) => {
-              if (value === 0) return "Valor não pode ser zero";
+              if (Number(value) === 0) return "Valor não pode ser zero";
             },
           },
         }}
@@ -39,6 +39,7 @@ export function LoanModal({ onCloseModal, setLoanDetails, loanId }: Props) {
           <Input
             maxLength={15}
             onBlur={onBlur}
+            testID="input-loan"
             keyboardType="number-pad"
             label="Valor do Empréstimo"
             style={{ textAlign: "right" }}
@@ -57,7 +58,9 @@ export function LoanModal({ onCloseModal, setLoanDetails, loanId }: Props) {
         </Text>
       </HStack>
 
-      <Button onPress={handleSubmit}>Salvar Empréstimo</Button>
+      <Button testID="add-loan" onPress={handleSubmit}>
+        Salvar Empréstimo
+      </Button>
     </VStack>
   );
 }
