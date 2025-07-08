@@ -13,24 +13,22 @@ export function usePaymentForm({ totalDebit, loanId, setLoanDetails, onCloseModa
   } = useForm({ defaultValues: { value: 0 } });
 
   const handlePayAllDebit = () => {
-    setValue("value", totalDebit ?? 0);
+    setValue("value", totalDebit!);
 
     clearErrors();
   };
 
   const onSubmit = (data: { value: number }) => {
     setLoanDetails((prev) => {
-      if (!prev) return null;
-
       const newHistory = createHistoryItem({
-        loanId: loanId ?? "",
+        loanId: loanId!,
         type: "payment",
-        value: data?.value ?? 0,
+        value: data?.value,
       });
 
       const totalDebit = Number(prev.totalDebit) - Number(data.value);
 
-      updateLoanTotalDebit({ loanId: loanId ?? "", newTotal: totalDebit });
+      updateLoanTotalDebit({ loanId: loanId!, newTotal: totalDebit });
 
       return {
         ...prev,
