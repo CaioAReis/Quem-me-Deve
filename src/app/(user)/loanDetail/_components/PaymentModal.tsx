@@ -17,8 +17,6 @@ export function PaymentModal({ totalDebit, setLoanDetails, loanId, onCloseModal 
     setLoanDetails,
   });
 
-  console.warn(errors);
-
   return (
     <VStack className="my-4">
       <Controller
@@ -28,8 +26,8 @@ export function PaymentModal({ totalDebit, setLoanDetails, loanId, onCloseModal 
           required: "Preencha com o valor recebido",
           validate: {
             isValid: (value) => {
-              if (value === 0) return "Valor não pode ser zero";
-              if (totalDebit !== undefined && value > totalDebit)
+              if (Number(value) === 0) return "Valor não pode ser zero";
+              if (totalDebit !== undefined && Number(value) > totalDebit)
                 return "O valor não pode ser maior que a dívida";
             },
           },
@@ -38,6 +36,7 @@ export function PaymentModal({ totalDebit, setLoanDetails, loanId, onCloseModal 
           <Input
             maxLength={15}
             onBlur={onBlur}
+            testID="input-payment"
             keyboardType="number-pad"
             label="Valor do Pagamento"
             style={{ textAlign: "right" }}
@@ -49,7 +48,12 @@ export function PaymentModal({ totalDebit, setLoanDetails, loanId, onCloseModal 
         )}
       />
 
-      <TouchableOpacity onPress={handlePayAllDebit} className="items-center" activeOpacity={0.7}>
+      <TouchableOpacity
+        testID="all-debit"
+        activeOpacity={0.7}
+        className="items-center"
+        onPress={handlePayAllDebit}
+      >
         <Text variant="H5" className="text-primary-400 underline">
           Valor Total da Dívida
         </Text>
@@ -60,7 +64,9 @@ export function PaymentModal({ totalDebit, setLoanDetails, loanId, onCloseModal 
         <Text className="text-sm text-primary-500">Não deixe a amizade virar prejuízo.</Text>
       </HStack>
 
-      <Button onPress={handleSubmit}>Salvar Pagamento</Button>
+      <Button testID="add-payment" onPress={handleSubmit}>
+        Salvar Pagamento
+      </Button>
     </VStack>
   );
 }
