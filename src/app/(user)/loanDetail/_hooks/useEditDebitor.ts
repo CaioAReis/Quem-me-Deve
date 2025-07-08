@@ -9,7 +9,7 @@ type Props = {
   onUserUpdate: (user: Partial<User>) => void;
 };
 
-export function useEditDebtForm({ user, onUserUpdate, onCloseModal }: Props) {
+export function useEditDebitForm({ user, onUserUpdate, onCloseModal }: Props) {
   const {
     control,
     handleSubmit,

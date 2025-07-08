@@ -1,8 +1,8 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
 
-import { EditDebtorModal } from "../EditDebtorModal";
+import { EditDebitorModal } from "../EditDebitorModal";
 
-describe("EditDebtorModal", () => {
+describe("EditDebitorModal", () => {
   const user = {
     name: "User Name",
     phone: "79999999999",
@@ -10,7 +10,7 @@ describe("EditDebtorModal", () => {
 
   it("Checking that renders correctly", () => {
     const { getByText } = render(
-      <EditDebtorModal onCloseModal={jest.fn()} onUserUpdate={jest.fn()} user={user} />
+      <EditDebitorModal onCloseModal={jest.fn()} onUserUpdate={jest.fn()} user={user} />
     );
 
     expect(getByText("Nome")).toBeTruthy();
@@ -20,7 +20,7 @@ describe("EditDebtorModal", () => {
 
   it("Checking that renders errors correctly", async () => {
     const { getByText, getByTestId } = render(
-      <EditDebtorModal onCloseModal={jest.fn()} onUserUpdate={jest.fn()} user={user} />
+      <EditDebitorModal onCloseModal={jest.fn()} onUserUpdate={jest.fn()} user={user} />
     );
 
     await act(async () => {

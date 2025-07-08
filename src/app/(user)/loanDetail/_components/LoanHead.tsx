@@ -2,7 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { ArrowLeftCircle, PenLine } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 
-import { EditDebtorModal } from "./EditDebtorModal";
+import { EditDebitorModal } from "./EditDebitorModal";
 
 import { User } from "@/@types";
 import { Avatar, ModalApp } from "@/components";
@@ -43,7 +43,7 @@ export function LoanHead({ onGoBack, user, onUserUpdate, totalDebit }: Props) {
                 }
               >
                 {(close) => (
-                  <EditDebtorModal onUserUpdate={onUserUpdate} user={user} onCloseModal={close} />
+                  <EditDebitorModal onUserUpdate={onUserUpdate} user={user} onCloseModal={close} />
                 )}
               </ModalApp>
             </HStack>

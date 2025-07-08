@@ -1,7 +1,7 @@
 import { Info } from "lucide-react-native";
 import { Controller } from "react-hook-form";
 
-import { useEditDebtForm } from "../_hooks/useEditDebtor";
+import { useEditDebitForm } from "../_hooks/useEditDebitor";
 
 import { User } from "@/@types";
 import { Button, Input } from "@/components";
@@ -14,8 +14,8 @@ type Props = {
   onUserUpdate: (user: Partial<User>) => void;
 };
 
-export function EditDebtorModal({ user, onUserUpdate, onCloseModal }: Props) {
-  const { control, errors, handleSubmit } = useEditDebtForm({ user, onUserUpdate, onCloseModal });
+export function EditDebitorModal({ user, onUserUpdate, onCloseModal }: Props) {
+  const { control, errors, handleSubmit } = useEditDebitForm({ user, onUserUpdate, onCloseModal });
 
   return (
     <VStack className="my-4">
