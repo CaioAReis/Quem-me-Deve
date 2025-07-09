@@ -29,7 +29,7 @@ describe("EditDebitorModal", () => {
     });
 
     await act(async () => {
-      fireEvent.press(getByText("Salvar Empréstimo"));
+      fireEvent.press(getByText("Salvar Alterações"));
     });
 
     await waitFor(() => {

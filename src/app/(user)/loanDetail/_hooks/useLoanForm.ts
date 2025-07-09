@@ -7,7 +7,7 @@ import { createHistoryItem, updateLoanTotalDebit } from "@/services/services";
 type Props = {
   loanId: string;
   onCloseModal: VoidFunction;
-  setLoanDetails: Dispatch<React.SetStateAction<Loan>>;
+  setLoanDetails: Dispatch<React.SetStateAction<Loan | null>>;
 };
 
 export function useLoanForm({ onCloseModal, loanId, setLoanDetails }: Props) {
@@ -19,6 +19,8 @@ export function useLoanForm({ onCloseModal, loanId, setLoanDetails }: Props) {
 
   const onSubmit = (data: Pick<HistoryItem, "value">) => {
     setLoanDetails((prev) => {
+      if (!prev) return prev; // or throw an error if prev should never be null
+
       const newHistory = createHistoryItem({
         loanId,
         type: "loan",
@@ -33,6 +35,11 @@ export function useLoanForm({ onCloseModal, loanId, setLoanDetails }: Props) {
         ...prev,
         totalDebit,
         history: newHistory ? [...prev.history, newHistory] : [...prev.history],
+        id: prev.id,
+        user: prev.user,
+        createdAt: prev.createdAt,
+        updatedAt: prev.updatedAt,
+        deadline: prev.deadline,
       };
     });
 

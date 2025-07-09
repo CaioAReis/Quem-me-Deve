@@ -62,7 +62,7 @@ export function EditDebitorModal({ user, onUserUpdate, onCloseModal }: Props) {
         <Text className="text-sm text-primary-500">Anote tudo certinho.</Text>
       </HStack>
 
-      <Button onPress={handleSubmit}>Salvar Empréstimo</Button>
+      <Button onPress={handleSubmit}>Salvar Alterações</Button>
     </VStack>
   );
 }
