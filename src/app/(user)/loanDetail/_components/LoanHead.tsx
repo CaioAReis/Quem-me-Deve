@@ -30,14 +30,18 @@ export function LoanHead({ onGoBack, user, onUserUpdate, totalDebit }: Props) {
               <ArrowLeftCircle color="white" size={30} />
             </TouchableOpacity>
 
-            <HStack className="gap-5">
+            <HStack className="gap-3">
               <CurrencyVisibility />
 
               <ModalApp
                 icon="UserRound"
                 title="Editar Devedor"
                 trigger={
-                  <TouchableOpacity testID="edit-user" activeOpacity={0.7}>
+                  <TouchableOpacity
+                    testID="edit-user"
+                    activeOpacity={0.7}
+                    className="size-10 items-center justify-center"
+                  >
                     <PenLine color="white" />
                   </TouchableOpacity>
                 }

@@ -55,5 +55,5 @@ export type NewItemProps = {
   loanId?: string;
   totalDebit?: number;
   onCloseModal: VoidFunction;
-  setLoanDetails: Dispatch<React.SetStateAction<Loan>>;
+  setLoanDetails: Dispatch<React.SetStateAction<Loan | null>>;
 };
