@@ -11,7 +11,7 @@ jest.mock("nativewind", () => ({
 
 jest.mock("expo-linking", () => {
   return {
-    openURL: jest.fn(), // cria o mock diretamente aqui
+    openURL: jest.fn(),
   };
 });
 
