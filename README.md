@@ -1,5 +1,9 @@
 # 📱 Quem Me Deve #
 
+Is a simple mobile app built with React Native, designed to help users manage and track personal debts in a practical and intuitive way.
+
+This app is ideal for anyone who needs a clear and organized way to keep track of informal loans, helping users avoid forgetfulness and maintain better financial control.
+
 ## 🚀 Technologies ##
 
   ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
